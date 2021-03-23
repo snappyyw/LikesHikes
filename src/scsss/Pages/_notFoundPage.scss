@@ -1,0 +1,20 @@
+.no-found {
+  background: url(../img/notFound.png) no-repeat;
+  background-size: cover;
+  &__body {
+    height: 100vh;
+    text-align: center;
+  }
+  &__title {
+    text-shadow: 1px 1px 2px black, 0 0 1em;
+    height: 350px;
+    font-size: 280px;
+    font-weight: bold;
+    color: white;
+  }
+  &__subtitle {
+    text-shadow: 1px 1px 2px black, 0 0 1em;
+    font-size: 30px;
+    color: white;
+  }
+}

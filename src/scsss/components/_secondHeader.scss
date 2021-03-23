@@ -1,0 +1,30 @@
+.header-second {
+  padding-bottom: 10px;
+  &__body {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    li {
+      display: inline;
+    }
+  }
+  &__logo {
+    background: url(../img/logo.png) no-repeat;
+    border-radius: 10px;
+    width: 230px;
+    height: 70px;
+  }
+  &__elemen {
+    margin: 9px;
+    color: white;
+    transition: 0.7s;
+    font-size: 24px;
+    &:hover {
+      cursor: pointer;
+      color: forestgreen;
+    }
+  }
+}

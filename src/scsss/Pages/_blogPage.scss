@@ -1,0 +1,22 @@
+.blog {
+  &__body {
+    padding-top: 25px;
+    width: 1400px;
+    margin: 0 auto;
+    margin: 0 auto;
+  }
+  &__title {
+    text-align: center;
+    margin: 15px;
+    font-size: 30px;
+  }
+  &__subtitle {
+    margin: 15px;
+    font-size: 20px;
+  }
+  &__date {
+    text-align: center;
+    font-size: 15px;
+    margin: 5px;
+  }
+}

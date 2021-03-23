@@ -1,0 +1,32 @@
+.footer {
+  background-color: rgb(47, 73, 30);
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  .сontacts {
+    margin: 25px;
+    &__text {
+      color: white;
+      font-size: 13px;
+      padding: 10px;
+    }
+    hr {
+      width: 280px;
+      margin-left: 15px;
+      border: 0;
+      border-bottom: 2px dashed #999;
+      background: white;
+    }
+  }
+  .footer-nav {
+    margin: 20px;
+    &__element {
+      color: white;
+      transition: 0.7s;
+      &:hover {
+        cursor: pointer;
+        color: rgb(162, 238, 196);
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.service {
+  background-color: white;
+  padding-top: 20px;
+  &__body {
+    padding-top: 20px;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  &__title {
+    color: black;
+    font-size: 25px;
+    padding-top: 20px;
+  }
+  &__subtitle {
+  }
+}
