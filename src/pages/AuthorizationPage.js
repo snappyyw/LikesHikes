@@ -21,50 +21,51 @@ function AuthorizationPage() {
         password: yup.string()
         .required('Обязательное поле'),
     })
+
     return(
-        <div className="authorization">
+        <div className = "authorization">
             <SecondHeader />
-            <div className="authorization__body">
-                <h4 className="authorization__title">Вход</h4>
+            <div className = "authorization__body">
+                <h4 className = "authorization__title">Вход</h4>
                 <Formik
-                initialValues={
+                initialValues = {
                     {
                         login: '',
                         password: '',
                     }
                 }
                 validateOnBlur
-                validationSchema={validationsSchema}
-                onSubmit={(values)=>{dispatch(login(values), user && history.push('/'))}}
+                validationSchema = {validationsSchema}
+                onSubmit = {(values) => {dispatch(login(values), user && history.push('/'))}}
                 >
-                {({values, errors, touched, handleChange, handlBlur, handleSubmit})=>(
+                {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
                     <>
                         <input 
-                            className="authorization__input" 
-                            onChange={handleChange} 
-                            onBlur={handlBlur} 
-                            value={values.name}
-                            name="login"
-                            type="text" 
-                            size="40" 
-                            placeholder="Ваш логин">
+                            className = "authorization__input" 
+                            onChange = {handleChange} 
+                            onBlur = {handlBlur} 
+                            value = {values.name}
+                            name = "login"
+                            type = "text" 
+                            size = "40" 
+                            placeholder = "Ваш логин">
                         </input>
                         {touched.login && errors.login && <p className="authorization__error">{errors.login}</p>}
 
                         <input 
-                            className="authorization__input" 
-                            onChange={handleChange} 
-                            onBlur={handlBlur} 
-                            value={values.name}
-                            name="password"
-                            type="password" 
-                            size="40" 
-                            placeholder="Ваш пароль">
+                            className = "authorization__input" 
+                            onChange = {handleChange} 
+                            onBlur = {handlBlur} 
+                            value = {values.name}
+                            name = "password"
+                            type = "password" 
+                            size = "40" 
+                            placeholder = "Ваш пароль">
                         </input>
                         {touched.password && errors.password && <p className="authorization__error">{errors.password}</p>}
 
                         <div>
-                            <button className="authorization__btn" onClick={handleSubmit} type="submit">Авторизоваться</button>
+                            <button className = "authorization__btn" onClick = {handleSubmit} type = "submit">Авторизоваться</button>
                         </div>
                     </>
                 )}

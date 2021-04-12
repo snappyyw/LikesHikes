@@ -23,7 +23,7 @@ const defaultState={
     page: 10
 }
 
-export default function  blog(state = defaultState, action) {
+export default function  blog (state = defaultState, action) {
     switch (action.type) {
         case sss:
             return{

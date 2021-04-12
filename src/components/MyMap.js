@@ -1,13 +1,15 @@
 import React from 'react'
-import {GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps'
+import { YMaps, Map } from 'react-yandex-maps';
 
 
 function MyMap() {
+
     return(
-        <GoogleMap defaultZoom={3.5} defaultCenter={{lat:63, lng:90}}/>
+        <YMaps >
+            <Map defaultState={{ center: [62.10388252, 77.51953125], zoom: 3.5,  }} width={1200} height={600} />
+        </YMaps>
     )
 }
 
-const wrappedMap=withScriptjs(withGoogleMap(MyMap));
 
-export default wrappedMap;
+export default MyMap;

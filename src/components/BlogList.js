@@ -10,13 +10,13 @@ function BlogList() {
     return(
         <Row className = "d-flex">
             {blog.list && blog.list.map( ({title, id, subtitle, date}) => 
-                <Col md = {4} key = {id} className={"mt-3"}>
-                    <Card style = {{width: 430}} border={"ligth"}>
-                        <h4 className="blog__title">{title}</h4>
-                        <p className="blog__subtitle">
+                <Col md = {4} key = {id} className = {"mt-3"}>
+                    <Card style = {{width: 430}} border = {"ligth"}>
+                        <h4 className = "blog__title">{title}</h4>
+                        <p className = "blog__subtitle">
                             {subtitle}
                         </p>
-                        <p className="blog__date">
+                        <p className = "blog__date">
                             {date}
                         </p>
                     </Card>

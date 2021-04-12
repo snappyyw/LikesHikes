@@ -7,40 +7,41 @@ import forest3 from "../scsss/img/сarousel/forest3.jpg"
 import forest4 from "../scsss/img/сarousel/forest4.jpg"
 
 function CarouselBox() {
+
     return(
-        <div className="carousel">
-            <div className="carousel__body">
+        <div className = "carousel">
+            <div className = "carousel__body">
                 <Carousel>
                     <Carousel.Item>
-                        <img src={forest1} alt="Forest" className="d-block w-100">
+                        <img src = {forest1} alt = "Forest" className = "d-block w-100">
 
                         </img>
                         <Carousel.Caption>
-                            <h3 className="carousel__title">Регистрируйся</h3>
+                            <h3 className = "carousel__title">Регистрируйся</h3>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img src={forest2} alt="Forest" className="d-block w-100">
+                        <img src = {forest2} alt = "Forest" className = "d-block w-100">
 
                         </img>
                         <Carousel.Caption>
-                            <h3 className="carousel__title">Выбирай маршруты для путешествий</h3>
+                            <h3 className = "carousel__title">Выбирай маршруты для путешествий</h3>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img src={forest3} alt="Forest" className="d-block w-100">
+                        <img src = {forest3} alt = "Forest" className = "d-block w-100">
 
                         </img>
                         <Carousel.Caption>
-                            <h3 className="carousel__title">Создавай свои собственные маршруты</h3>
+                            <h3 className = "carousel__title">Создавай свои собственные маршруты</h3>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img src={forest4} alt="Forest" className="d-block w-100">
+                        <img src = {forest4} alt = "Forest" className = "d-block w-100">
 
                         </img>
                         <Carousel.Caption>
-                            <h3 className="carousel__title">Делись своими маршрутами с другими пользователями</h3>
+                            <h3 className = "carousel__title">Делись своими маршрутами с другими пользователями</h3>
                         </Carousel.Caption> 
                     </Carousel.Item>
                 </Carousel>
