@@ -16,7 +16,9 @@
     transition: 0.7s;
     &:hover {
       cursor: pointer;
-      color: black;
+      color: white;
+      background-color: rgb(19, 80, 37);
+      text-decoration: none;
     }
   }
 }

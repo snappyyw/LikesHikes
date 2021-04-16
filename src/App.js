@@ -9,9 +9,9 @@ function App() {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user.currentUser)
 
-  React.useEffect(() => {
-    dispatch(auth())
-  }, [])
+  // React.useEffect(() => {
+  //   dispatch(auth())
+  // }, [])
 
   return (
     <Switch>

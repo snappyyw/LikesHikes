@@ -36,7 +36,7 @@ function requestLogin(payload) {
 
 function* workerLogin({payload}) {
     try{
-
+        
         const response = yield call(requestLogin, payload)
 
         yield put(setUser(response.user))
@@ -79,7 +79,7 @@ function* workerAuth() {
     }
     catch (err) {
 
-        swal( err.toString(), {
+        swal(err.toString(), {
             icon: "error",
             title: "Oops",
             timer: 5000,

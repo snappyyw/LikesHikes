@@ -1,14 +1,21 @@
-import React from 'react'
-import { YMaps, Map } from 'react-yandex-maps';
+import React from 'react';
+import {
+    withScriptjs, withGoogleMap,
+    GoogleMap,
+  } from "react-google-maps";
 
 
-function SharedMap() {
+function wrappedMap() {
 
-    return(
-        <YMaps>
-            <Map defaultState={{ center: [62.10388252, 77.51953125], zoom: 3.5,  }} width={1400} height={700} />
-        </YMaps>
-    )
+    return (
+        <GoogleMap
+            defaultZoom={3.5}
+            defaultCenter={{lat: 63, lng: 90,}}
+            >
+        </GoogleMap>
+    )  
 }
 
-export default SharedMap;
+
+export default withScriptjs(withGoogleMap(wrappedMap));
+

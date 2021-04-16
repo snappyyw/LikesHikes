@@ -1,15 +1,45 @@
-import React from 'react'
-import { YMaps, Map } from 'react-yandex-maps';
+/* eslint-disable no-undef */
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import {
+    withScriptjs, withGoogleMap,
+    GoogleMap, Polyline
+} from "react-google-maps";
+
+import {setCoordinat} from '../action/creatingRoutes'
 
 
-function MyMap() {
+function MyMap({isCreation}) {
+  const coords  = useSelector(state => state.myRouters.coordinates)
+  const dispatch = useDispatch()
 
-    return(
-        <YMaps >
-            <Map defaultState={{ center: [62.10388252, 77.51953125], zoom: 3.5,  }} width={1200} height={600} />
-        </YMaps>
-    )
+  function creation(ev) {
+    if(isCreation){
+      dispatch(setCoordinat({lat: ev.latLng.lat(), lng: ev.latLng.lng() }))
+    }
+    return
+  }
+
+    return (
+      <GoogleMap
+        defaultZoom={3.5}
+        defaultCenter={{lat: 63, lng: 90,}}
+        onClick={creation}
+      >
+        <Polyline
+          path={coords}
+          key={1}
+          options={{
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35
+          }}
+        />
+      </GoogleMap>
+    );
 }
 
 
-export default MyMap;
+export default withScriptjs(withGoogleMap(MyMap));
