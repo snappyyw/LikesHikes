@@ -1,4 +1,4 @@
-import {SET_BLOG} from "../action/blog"
+import {SET_BLOG} from "../action/blog";
 
 const defaultState = {
     list:[
@@ -15,7 +15,7 @@ const defaultState = {
         {title: "da", subtitle: "...", id: 58},
         {title: "da", subtitle: "...", id: 59},
     ],
-}
+};
 
 export default function  blog (state = defaultState, action) {
     switch (action.type) {

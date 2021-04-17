@@ -1,23 +1,22 @@
-/* eslint-disable no-undef */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import {
     withScriptjs, withGoogleMap,
     GoogleMap, Polyline
 } from "react-google-maps";
 
-import {setCoordinat} from '../action/creatingRoutes'
+import {setCoordinat} from '../action/creatingRoutes';
 
 
 function MyMap({isCreation}) {
-  const coords  = useSelector(state => state.myRouters.coordinates)
-  const dispatch = useDispatch()
+  const coords  = useSelector(state => state.myRouters.coordinates);
+  const dispatch = useDispatch();
 
   function creation(ev) {
     if(isCreation){
       dispatch(setCoordinat({lat: ev.latLng.lat(), lng: ev.latLng.lng() }))
     }
-    return
+    return;
   }
 
     return (

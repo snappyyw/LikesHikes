@@ -2,12 +2,11 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 function MainFooter() {
-
     return(
         <footer className = 'footer'>
             <div className = "сontacts">
                 <p className = "сontacts__text">
-                    E-mail для предложений и запросов: snippymr@yandex.ru
+                    E-mail для предложений и запросов: <a href="/" style={{color: "white"}}>snippymr@yandex.ru</a>
                 </p>
                 <hr/>
                 <p className = "сontacts__text">

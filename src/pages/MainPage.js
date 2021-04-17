@@ -3,7 +3,6 @@ import React from 'react';
 import {MainHeder, MainFooter, CarouselBox} from '../components';
 
 function MainPage() {
-    
     return(
         <>
             <MainHeder/>

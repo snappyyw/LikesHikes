@@ -1,13 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
-import { RegistrationPage, AuthorizationPage, BlogPage, MainPage ,RoutesPage, ProfilePage, NotFound } from "./pages"
+import { RegistrationPage, AuthorizationPage, 
+    BlogPage, MainPage ,RoutesPage, 
+    ProfilePage, NotFound 
+} from "./pages";
 import { auth } from './action/user';
 
 function App() {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user.currentUser)
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user.currentUser);
 
   // React.useEffect(() => {
   //   dispatch(auth())

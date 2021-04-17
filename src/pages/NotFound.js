@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 
 function NotFound() {
-    
     return(
         <div className = "no-found">
             <div className = "no-found__body">

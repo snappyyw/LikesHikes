@@ -8,11 +8,9 @@ import {SecondHeader} from '../components';
 import {login} from '../action/user'
 
 function AuthorizationPage() {
-
-    const dispatch = useDispatch()
-    const user = useSelector(state => state.user.currentUser)
-    const history = useHistory()
-
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user.currentUser);
+    const history = useHistory();
     const validationsSchema = yup.object().shape({
         
         login: yup.string()
@@ -20,7 +18,7 @@ function AuthorizationPage() {
 
         password: yup.string()
         .required('Обязательное поле'),
-    })
+    });
 
     return(
         <div className = "authorization">
@@ -28,15 +26,15 @@ function AuthorizationPage() {
             <div className = "authorization__body">
                 <h4 className = "authorization__title">Вход</h4>
                 <Formik
-                initialValues = {
-                    {
-                        login: '',
-                        password: '',
+                    initialValues = {
+                        {
+                            login: '',
+                            password: '',
+                        }
                     }
-                }
-                validateOnBlur
-                validationSchema = {validationsSchema}
-                onSubmit = {(values) => {dispatch(login(values), user && history.push('/'))}}
+                    validateOnBlur
+                    validationSchema = {validationsSchema}
+                    onSubmit = {(values) => {dispatch(login(values), user && history.push('/'))}}
                 >
                 {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
                     <>
@@ -50,8 +48,9 @@ function AuthorizationPage() {
                             size = "40" 
                             placeholder = "Ваш логин">
                         </input>
-                        {touched.login && errors.login && <p className="authorization__error">{errors.login}</p>}
-
+                        {
+                            touched.login && errors.login && <p className="authorization__error">{errors.login}</p>
+                        }
                         <input 
                             className = "authorization__input" 
                             onChange = {handleChange} 
@@ -62,8 +61,9 @@ function AuthorizationPage() {
                             size = "40" 
                             placeholder = "Ваш пароль">
                         </input>
-                        {touched.password && errors.password && <p className="authorization__error">{errors.password}</p>}
-
+                        {
+                            touched.password && errors.password && <p className="authorization__error">{errors.password}</p>
+                        }
                         <div>
                             <button className = "authorization__btn" onClick = {handleSubmit} type = "submit">Авторизоваться</button>
                         </div>

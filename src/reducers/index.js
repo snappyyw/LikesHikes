@@ -1,8 +1,8 @@
-import {combineReducers} from 'redux'
+import {combineReducers} from 'redux';
 
-import user from './user'
-import blog from './blog'
-import myRouters from './myRouters'
+import user from './user';
+import blog from './blog';
+import myRouters from './myRouters';
 
 export default combineReducers({
     user: user,

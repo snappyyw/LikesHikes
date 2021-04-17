@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import {MainHeder, MainFooter, SharedMap} from '../components'
+import {MainHeder, MainFooter, SharedMap} from '../components';
 
 
 function RoutesPage() {
-    
     return(
         <>
             <MainHeder/>

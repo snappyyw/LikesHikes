@@ -1,4 +1,4 @@
-import { SET_USER, LOGOUT} from "../action/user"
+import { SET_USER, LOGOUT} from "../action/user";
 
 const defaultState = {
     currentUser: {
@@ -7,7 +7,7 @@ const defaultState = {
         routes: 5,
         completed: 1,
     },
-}
+};
 
 export default function  user (state = defaultState, action) {
     switch (action.type) {
