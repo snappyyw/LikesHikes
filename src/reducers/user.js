@@ -12,20 +12,17 @@ const defaultState = {
 export default function  user (state = defaultState, action) {
     switch (action.type) {
         case SET_USER:
-
             return{
                 ...state,
                 currentUser: action.payload,
             }
         case LOGOUT:
             localStorage.removeItem('token')
-
             return{
                 ...state,
                 currentUser: undefined,
             }
         default:
-
             return state;
     }
 }

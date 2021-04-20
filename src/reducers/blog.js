@@ -1,4 +1,4 @@
-import {SET_BLOG} from "../action/blog";
+import {SAVE_BLOG} from "../action/blog";
 
 const defaultState = {
     list:[
@@ -19,8 +19,7 @@ const defaultState = {
 
 export default function  blog (state = defaultState, action) {
     switch (action.type) {
-        case SET_BLOG:
-
+        case SAVE_BLOG:
             return{
                 ...state,
                 list: action.payload,

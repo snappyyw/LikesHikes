@@ -2,17 +2,16 @@ import {put, takeEvery, call} from 'redux-saga/effects';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-import {GET_BLOG, receiveBlog} from "../action/blog";
+import {GET_ROUTER, receiveRouter} from "../action/routers";
 
-function requestBlog() {
-
+function requestRouter() {
     return axios.get(``);
 };
 
-function* workerBlog() {
+function* workerRouter() {
     try{
-        const response = yield call(requestBlog);
-        yield put(receiveBlog(response));
+        const response = yield call(requestRouter);
+        yield put(receiveRouter(response));
     }
     catch (err) {
         swal( err.toString(), {
@@ -23,6 +22,6 @@ function* workerBlog() {
     }
 }
 
-export function* watchBlog() {
-    yield takeEvery (GET_BLOG, workerBlog);
+export function* watchRouter() {
+    yield takeEvery (GET_ROUTER, workerRouter);
 }

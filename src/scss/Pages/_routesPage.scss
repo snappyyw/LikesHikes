@@ -1,4 +1,7 @@
 .routes {
+  .map {
+    min-height: 700px;
+  }
   &__body {
     width: 1400px;
     margin: 0 auto;

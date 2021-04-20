@@ -1,0 +1,31 @@
+.info-window {
+  width: 240px;
+  text-align: center;
+  &__title {
+    font-size: 15px;
+  }
+  &__text {
+    font-size: 13px;
+    text-align: left;
+  }
+  &__complexity {
+    font-size: 13px;
+    text-align: left;
+  }
+  &__button {
+    margin: 7px;
+    padding: 5px;
+    background-color: rgb(28, 148, 64);
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    color: white;
+    transition: 0.7s;
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background-color: rgb(19, 80, 37);
+      text-decoration: none;
+    }
+  }
+}

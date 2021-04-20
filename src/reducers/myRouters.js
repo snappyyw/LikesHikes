@@ -1,4 +1,4 @@
-import {SET_ROUTER, SET_COORDINAT, REMOVE_COORDINAT} from "../action/creatingRoutes";
+import {SET_MY_ROUTER, SET_COORDINAT, REMOVE_COORDINAT} from "../action/creatingRoutes";
 
 const defaultState = {
     coordinates: [],
@@ -20,13 +20,11 @@ export default function  myRouters (state = defaultState, action) {
             }
 
         case SET_COORDINAT:
-
             return{
                 ...state,
                 coordinates: [...state.coordinates, action.payload],
             }
-        case SET_ROUTER:
-
+        case SET_MY_ROUTER:
             return{
                 ...state,
             }
