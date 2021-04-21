@@ -18,7 +18,6 @@ function MainPage() {
                 </div>
             </section>
             <section className = "section-comments">
-
             </section>
             <MainFooter/>
         </>

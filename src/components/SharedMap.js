@@ -13,13 +13,12 @@ function wrappedMap({routers}) {
             defaultZoom={3.5}
             defaultCenter={{lat: 63, lng: 90,}}
         >
-        {
-          routers && 
-          routers.map(
-            cord => <PolylineOrMarker сoordinates={cord.coordinates} date={cord} key={cord.id}/>
-          )
-        }
-
+          {
+            routers && 
+            routers.map(
+              cord => <PolylineOrMarker сoordinates={cord.coordinates} date={cord} key={cord.id}/>
+            )
+          }
         </GoogleMap>
     )  
 }

@@ -1,0 +1,16 @@
+.route-details {
+  &__body {
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  &__title {
+    padding-top: 25px;
+    font-size: 25px;
+    text-align: center;
+  }
+  &__subtitle {
+    font-size: 16px;
+  }
+}

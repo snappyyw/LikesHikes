@@ -7,4 +7,5 @@ export {default as SharedMap} from './SharedMap';
 export {default as MyMap} from './MyMap';
 export {default as BlogList} from './BlogList';
 export {default as PolylineOrMarker} from './PolylineOrMarker';
+export {default as DetailsMap} from './DetailsMap';
 

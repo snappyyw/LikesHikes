@@ -1,10 +1,12 @@
 import React from 'react';
-import {Polyline, Marker, InfoWindow} from "react-google-maps";
-import { useHistory } from 'react-router-dom';
+import {
+    withScriptjs, withGoogleMap,
+    GoogleMap, Marker,
+    Polyline, InfoWindow
+} from "react-google-maps";
 
-function PolylineOrMarker({сoordinates, date}) {
+function DetailsMap({routers}) {
     const [selectedRouter, setSelectedRouter] = React.useState(null);
-    const history = useHistory();
 
     function determiningComplexity(complexity) {
         if (complexity === "Средний"){
@@ -32,13 +34,16 @@ function PolylineOrMarker({сoordinates, date}) {
         return res + "...";
     }
 
-    return(
-        <>
+    return (
+        <GoogleMap
+            defaultZoom={12}
+            defaultCenter={routers.coordinates[0]}
+        >
             <Polyline
-            path={сoordinates}
+            path={routers.coordinates}
             key={1}
             options={{
-                strokeColor: determiningComplexity(date.complexity),
+                strokeColor: determiningComplexity(routers.complexity),
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
                 fillColor: "#FF0000",
@@ -46,8 +51,8 @@ function PolylineOrMarker({сoordinates, date}) {
             }}
             />
             <Marker 
-                position={сoordinates[0]}
-                onClick={() => setSelectedRouter(date)}
+                position={routers.coordinates[0]}
+                onClick={() => setSelectedRouter(routers)}
                 icon={{
                     url: '/marker.png',
                     scaledSize: new window.google.maps.Size(30, 30)
@@ -57,25 +62,19 @@ function PolylineOrMarker({сoordinates, date}) {
             {
                 selectedRouter &&
                 <InfoWindow
-                    position={сoordinates[0]}
+                    position={routers.coordinates[0]}
                     onCloseClick={() => setSelectedRouter(null)}
                 >
                     <div className="info-window">
-                        <h2 className="info-window__title">{date.name}</h2>
-                        <p className="info-window__text">{stringReduction(date.discription, 100)}</p>
-                        <p className="info-window__complexity">Сложность: {date.complexity}</p>
-                        <button className="info-window__button" onClick={() => history.push({
-                            pathname: `/Routes/${date.id}`,
-                            customData: date,
-                            })}
-                        >
-                        Подробнее
-                        </button>
+                        <h2 className="info-window__title">{routers.name}</h2>
+                        <p className="info-window__text">{stringReduction(routers.discription, 100)}</p>
+                        <p className="info-window__complexity">Сложность: {routers.complexity}</p>
                     </div>
                 </InfoWindow>
             }
-        </>
-    )
+        </GoogleMap>
+    )  
 }
 
-export default PolylineOrMarker;
+
+export default withScriptjs(withGoogleMap(DetailsMap));
