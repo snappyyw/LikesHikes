@@ -2,12 +2,14 @@ import {combineReducers} from 'redux';
 
 import user from './user';
 import blog from './blog';
-import myRouters from './myRouters';
-import routers from './routers'
+import myRoutes from './myRoutes';
+import allRoutes from './allRoutes';
+import routes from './routes'
 
 export default combineReducers({
     user: user,
     blog: blog,
-    myRouters: myRouters,
-    routers: routers,
+    myRoutes: myRoutes,
+    allRoutes: allRoutes,
+    routes: routes,
 });

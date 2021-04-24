@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RegistrationPage, AuthorizationPage, 
     BlogPage, MainPage ,RoutesPage, 
     ProfilePage, NotFoundPage,
-    RouteDetailsPage
+    RouteDetailsPage, CreatingRoute
 } from "./pages";
 import { auth } from './action/user';
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.currentUser);
+  const coordinats = useSelector(state => state.myRoutes.coordinates);
 
   // React.useEffect(() => {
   //   dispatch(auth())
@@ -22,10 +23,17 @@ function App() {
       <Route exact path='/' component={MainPage} />
       <Route path='/Blog' component={BlogPage} />
       <Route exact path='/Routes' component={RoutesPage} />
-      {user && <Route path='/Profile' component={ProfilePage} />}
+      {
+        user && 
+        <Route exact path='/Profile' component={ProfilePage} />
+      }
       <Route path='/Registration' component={RegistrationPage} />
       <Route path='/Authorization' component={AuthorizationPage} />
       <Route path="/Routes/:id" component={RouteDetailsPage} />
+      {
+        coordinats.length > 1 &&
+        <Route path="/Profile/Routes" component={CreatingRoute} />
+      }
       <Route component={NotFoundPage} />
     </Switch>
   );

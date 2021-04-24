@@ -5,7 +5,7 @@ import {
     Polyline, InfoWindow
 } from "react-google-maps";
 
-function DetailsMap({routers}) {
+function DetailsMap({routes}) {
     const [selectedRouter, setSelectedRouter] = React.useState(null);
 
     function determiningComplexity(complexity) {
@@ -37,13 +37,13 @@ function DetailsMap({routers}) {
     return (
         <GoogleMap
             defaultZoom={12}
-            defaultCenter={routers.coordinates[0]}
+            defaultCenter={routes.coordinates[0]}
         >
             <Polyline
-            path={routers.coordinates}
+            path={routes.coordinates}
             key={1}
             options={{
-                strokeColor: determiningComplexity(routers.complexity),
+                strokeColor: determiningComplexity(routes.complexity),
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
                 fillColor: "#FF0000",
@@ -51,8 +51,8 @@ function DetailsMap({routers}) {
             }}
             />
             <Marker 
-                position={routers.coordinates[0]}
-                onClick={() => setSelectedRouter(routers)}
+                position={routes.coordinates[0]}
+                onClick={() => setSelectedRouter(routes)}
                 icon={{
                     url: '/marker.png',
                     scaledSize: new window.google.maps.Size(30, 30)
@@ -62,13 +62,13 @@ function DetailsMap({routers}) {
             {
                 selectedRouter &&
                 <InfoWindow
-                    position={routers.coordinates[0]}
+                    position={routes.coordinates[0]}
                     onCloseClick={() => setSelectedRouter(null)}
                 >
                     <div className="info-window">
-                        <h2 className="info-window__title">{routers.name}</h2>
-                        <p className="info-window__text">{stringReduction(routers.discription, 100)}</p>
-                        <p className="info-window__complexity">Сложность: {routers.complexity}</p>
+                        <h2 className="info-window__title">{routes.name}</h2>
+                        <p className="info-window__text">{stringReduction(routes.discription, 100)}</p>
+                        <p className="info-window__complexity">Сложность: {routes.complexity}</p>
                     </div>
                 </InfoWindow>
             }

@@ -2,8 +2,8 @@ import {all} from 'redux-saga/effects';
 
 import {watchUser} from './sageUser';
 import {watchBlog} from './sageBlog';
-import {watchRouter} from './sageRouters'
+import {watchRoute} from './sageRoutes'
 
 export function* rootWatcher() {
-    yield all([watchUser(), watchBlog(), watchRouter()]);
+    yield all([watchUser(), watchBlog(), watchRoute()]);
 }

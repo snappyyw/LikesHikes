@@ -9,7 +9,7 @@ import {setCoordinat} from '../action/creatingRoutes';
 
 
 function MyMap({isCreation}) {
-  const coords  = useSelector(state => state.myRouters.coordinates);
+  const coords  = useSelector(state => state.myRoutes.coordinates);
   const dispatch = useDispatch();
 
   function creation(ev) {

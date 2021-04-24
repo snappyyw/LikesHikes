@@ -3,7 +3,7 @@ import {Polyline, Marker, InfoWindow} from "react-google-maps";
 import { useHistory } from 'react-router-dom';
 
 function PolylineOrMarker({сoordinates, date}) {
-    const [selectedRouter, setSelectedRouter] = React.useState(null);
+    const [selectedRoute, setSelectedRoute] = React.useState(null);
     const history = useHistory();
 
     function determiningComplexity(complexity) {
@@ -47,7 +47,7 @@ function PolylineOrMarker({сoordinates, date}) {
             />
             <Marker 
                 position={сoordinates[0]}
-                onClick={() => setSelectedRouter(date)}
+                onClick={() => setSelectedRoute(date)}
                 icon={{
                     url: '/marker.png',
                     scaledSize: new window.google.maps.Size(30, 30)
@@ -55,10 +55,10 @@ function PolylineOrMarker({сoordinates, date}) {
 
             />
             {
-                selectedRouter &&
+                selectedRoute &&
                 <InfoWindow
                     position={сoordinates[0]}
-                    onCloseClick={() => setSelectedRouter(null)}
+                    onCloseClick={() => setSelectedRoute(null)}
                 >
                     <div className="info-window">
                         <h2 className="info-window__title">{date.name}</h2>
@@ -66,7 +66,6 @@ function PolylineOrMarker({сoordinates, date}) {
                         <p className="info-window__complexity">Сложность: {date.complexity}</p>
                         <button className="info-window__button" onClick={() => history.push({
                             pathname: `/Routes/${date.id}`,
-                            customData: date,
                             })}
                         >
                         Подробнее

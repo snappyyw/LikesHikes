@@ -25,7 +25,6 @@ export default function  blog (state = defaultState, action) {
                 list: action.payload,
             }
         default:
-
             return state;
     }
 }

@@ -7,7 +7,9 @@ function CreatingRoute() {
         <>
             <MainHeder/>
             <div className = "creating-route">
+                <div className="creating-route__body">
 
+                </div>
             </div>
             <MainFooter/>
         </>

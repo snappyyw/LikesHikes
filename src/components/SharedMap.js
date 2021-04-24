@@ -7,15 +7,15 @@ import {
 
 import {PolylineOrMarker} from './index'
 
-function wrappedMap({routers}) {
+function wrappedMap({routes}) {
     return (
         <GoogleMap
             defaultZoom={3.5}
             defaultCenter={{lat: 63, lng: 90,}}
         >
           {
-            routers && 
-            routers.map(
+            routes && 
+            routes.map(
               cord => <PolylineOrMarker сoordinates={cord.coordinates} date={cord} key={cord.id}/>
             )
           }

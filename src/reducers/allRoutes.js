@@ -1,7 +1,7 @@
-import { SAVE_ROUTER } from "../action/routers";
+import { SAVE_ALL_ROUTES } from "../action/allRoutes";
 
 const defaultState = {
-    routers: [
+    routes: [
         {
             id:1,
             name: "Первый путь",
@@ -64,10 +64,10 @@ const defaultState = {
 
 export default function  routers (state = defaultState, action) {
     switch (action.type) {
-        case SAVE_ROUTER:
+        case SAVE_ALL_ROUTES:
             return{
                 ...state,
-                routers: action.payload
+                routes: action.payload
             }
         default:
             return state;

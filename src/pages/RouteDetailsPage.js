@@ -1,16 +1,17 @@
 import React from 'react';
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 
 import {MainHeder, MainFooter, DetailsMap} from '../components'
+import {getRoute} from '../action/route'
 
 function RouteDetailsPage(prop) {
-    let date = prop.location.customData
-    const routers = useSelector(state => state.routers.routers);
+    const id = prop.location.pathname.split('/')[2];
+    const date = useSelector(state => state.routes);
+    const dispatch = useDispatch()
 
-    if(!date){
-        const id = prop.location.pathname.split('/')[2]
-        date = routers.find(rout => rout.id === +id)
-    }
+    React.useEffect(() => {
+        dispatch(getRoute(id))
+    }, []);
 
     return(
         <>
@@ -18,7 +19,7 @@ function RouteDetailsPage(prop) {
                 <div className = "route-details">
                     <div className="route-details__body">
                         <DetailsMap 
-                                routers={date}
+                                routes={date}
                                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,place&key=AIzaSyCm18OXr7nUO_hsYpActf9Dwjc0_jmpK9g`}  
                                 loadingElement={<div style={{ height: `100%` }} />}
                                 containerElement={<div style={{ height: `400px` }} />}

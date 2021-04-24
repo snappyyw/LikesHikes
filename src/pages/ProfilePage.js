@@ -1,13 +1,15 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp';
+import { NavLink } from 'react-router-dom';
 
 import {MainHeder, MainFooter, MyMap} from '../components';
 import {removeCoordinat} from '../action/creatingRoutes';
 
+
 function ProfilePage() {
     const user = useSelector(state => state.user.currentUser);
-    const coords  = useSelector(state => state.myRouters.coordinates);
+    const coords  = useSelector(state => state.myRoutes.coordinates);
     const dispatch = useDispatch();
     const [creation , setCreation ] = React.useState(false);
     const isCreation = () => {
@@ -38,9 +40,15 @@ function ProfilePage() {
                             />
                         </div>
                         <div className="сontrol-buttons">
-                            {coords.length > 1 && <button className="сontrol-buttons__button" onClick={()=>{dispatch(removeCoordinat())}}>Удалить</button>}
+                            {
+                                coords.length > 1 && 
+                                <button className="сontrol-buttons__button" onClick={()=>{dispatch(removeCoordinat())}}>Удалить</button>
+                            }
                             <button className="сontrol-buttons__button" onClick={isCreation}>Создать маршрут</button>
-                            {coords.length > 1  && <button className="сontrol-buttons__button" onClick={console.log("ssss")}>Продолжить</button>}
+                            {
+                                coords.length > 1  && 
+                                <NavLink to="/Profile/Routes" className="сontrol-buttons__button">Продолжить</NavLink>
+                            }
                         </div>
                     </div>
                 </div>
