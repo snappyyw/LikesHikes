@@ -2,6 +2,7 @@ import { SET_USER, LOGOUT} from "../action/user";
 
 const defaultState = {
     currentUser: {
+        id: 1,
         login: "Snippy",
         email: "snippymr@yandex.ru",
         routes: 5,

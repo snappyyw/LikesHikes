@@ -1,5 +1,41 @@
 .creating-route {
   &__body {
-    height: 100vh;
+    width: 1200px;
+    margin: 0 auto;
+  }
+  &__input {
+    width: 350px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+  &__error {
+    padding-left: 15px;
+    color: red;
+    width: 350px;
+  }
+  &__btn {
+    margin-left: 370px;
+    margin-top: 50px;
+    display: block;
+    font-size: 20px;
+    width: 450px;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.7s;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(212, 224, 158);
+    }
+  }
+  &__title {
+    margin: 10px;
+    font-size: 20px;
+  }
+  &__row {
+    display: flex;
+  }
+  &__col {
+    margin: 25px;
   }
 }

@@ -1,32 +1,50 @@
-import {SET_MY_ROUTE, SET_COORDINAT, REMOVE_COORDINAT} from "../action/creatingRoutes";
+import {SAVE_MY_ROUTES} from "../action/myRoutes";
 
 const defaultState = {
-    coordinates: [],
-    name: undefined,
-    duration: undefined,
-    complexity: undefined,
-    region: undefined,
-    discription: undefined,
-    keyPoints: undefined,
+    routes: [
+        {
+            id:1,
+            name: "Первый путь",
+            coordinates:[
+                {lat: 51.551266170097534, lng: 42.922927931687624},
+                {lat: 51.54635579743344, lng: 42.93219764604309},
+                {lat: 51.542299002876675, lng: 42.922927931687624},
+                {lat: 51.535252131633904, lng: 42.92910774125794},
+                {lat: 51.531407923785125, lng: 42.93425758256653},
+                {lat: 51.527349796631604, lng: 42.94078071489075},
+                {lat: 51.521795983810804, lng: 42.944900587937624},
+                {lat: 51.51581419704985, lng: 42.950393752000124},
+                {lat: 51.51410497081411, lng: 42.95726020707825},
+                {lat: 51.51453228338583, lng: 42.968589857957156},
+                {lat: 51.5134639944405, lng: 42.98266609086731},
+                {lat: 51.51132734138891, lng: 43.00910194291809},
+                {lat: 51.517309717394646, lng: 43.02798469438294},
+                {lat: 51.523504921442075, lng: 43.05510719194153},
+                {lat: 51.5164551403532, lng: 43.06163032426575},
+                {lat: 51.52692260430986, lng: 43.07193000688294},
+                {lat: 51.53375720049115, lng: 43.07261665239075},
+                {lat: 51.540377237110086, lng: 43.065750197312624},
+                {lat: 51.54400717098386, lng: 43.05304725541809},
+                {lat: 51.54870430265613, lng: 43.04034431352356},
+                {lat: 51.55681638798462, lng: 43.04068763627747},
+                {lat: 51.57090236125685, lng: 43.05407722367981},
+            ],
+            duration: "25 часов",
+            complexity: "Сложный",
+            discription: "Повседневная практика показывает, что реализация намеченных плановых заданий в значительной степени обуславливает создание модели развития. Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании новых предложений.",
+            region: "Центральный",
+            keyPoints: ["Первый", "Кострома", "Монастырь"]
+        }
+    ]
 };
 
-export default function  myRouters (state = defaultState, action) {
+export default function  myRoutes (state = defaultState, action) {
     switch (action.type) {
 
-        case REMOVE_COORDINAT:
+        case SAVE_MY_ROUTES:
             return{
                 ...state,
-                coordinates: []
-            }
-
-        case SET_COORDINAT:
-            return{
-                ...state,
-                coordinates: [...state.coordinates, action.payload],
-            }
-        case SET_MY_ROUTE:
-            return{
-                ...state,
+                routes: action.payload
             }
         default:
             return state;

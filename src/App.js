@@ -12,7 +12,7 @@ import { auth } from './action/user';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.currentUser);
-  const coordinats = useSelector(state => state.myRoutes.coordinates);
+  const coordinats = useSelector(state => state.creatingRoutes.coordinates);
 
   // React.useEffect(() => {
   //   dispatch(auth())

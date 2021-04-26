@@ -10,7 +10,7 @@ function RoutesPage() {
     const dispatch = useDispatch()
 
     React.useEffect(() => {
-        dispatch(getAllRoutes())
+        dispatch(getAllRoutes());
     }, []);
 
     return(

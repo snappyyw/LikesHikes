@@ -6,10 +6,12 @@ import {
 } from "react-google-maps";
 
 import {setCoordinat} from '../action/creatingRoutes';
+import {PolylineOrMarker} from './index'
 
 
-function MyMap({isCreation}) {
-  const coords  = useSelector(state => state.myRoutes.coordinates);
+function MyMap({isCreation, isVisibility}) {
+  const coords  = useSelector(state => state.creatingRoutes.coordinates);
+  const routes = useSelector(state => state.myRoutes.routes);
   const dispatch = useDispatch();
 
   function creation(ev) {
@@ -36,6 +38,13 @@ function MyMap({isCreation}) {
             fillOpacity: 0.35
           }}
         />
+        {
+          isVisibility &&
+          routes && 
+          routes.map(
+            cord => <PolylineOrMarker сoordinates={cord.coordinates} date={cord} key={cord.id}/>
+          )
+        }
       </GoogleMap>
     );
 }

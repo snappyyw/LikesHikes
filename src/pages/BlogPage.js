@@ -9,7 +9,7 @@ function BlogPage() {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
-        dispatch(getBlog())
+        dispatch(getBlog());
     }, []);
 
     return(
