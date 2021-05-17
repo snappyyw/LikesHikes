@@ -5,12 +5,12 @@ const defaultState = {
         {lat: 59.285221741174766, lng: 121.82320441988949},
         {lat: 58.285221741174766, lng: 120.82320441988949},
     ],
-    name: undefined,
-    duration: undefined,
-    complexity: undefined,
-    region: undefined,
-    discription: undefined,
-    keyPoints: undefined,
+    name: null,
+    duration: null,
+    complexity: null,
+    region: null,
+    discription: null,
+    keyPoints: null,
 };
 
 export default function  creatingRoutes (state = defaultState, action) {
