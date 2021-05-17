@@ -8,7 +8,13 @@ import {GET_MY_ROUTES, receiveMyRoute} from '../action/myRoutes';
 import {CREATE_ROUTE, clearRoute} from '../action/creatingRoutes';
 
 function requestAllRoute() {
-    return axios.get(``);
+    return axios({
+        method: 'get',
+        url: 'http://likeshikes.somee.com/api/Routes/GetAllRoutes',
+        data: {
+          routeFilter: null
+        }
+      });
 };
 
 function* workerAllRoute() {
@@ -62,7 +68,7 @@ function* workerMyRoutes({payload}) {
 }
 
 function requestCreateRoutes({payload}) {
-    return axios.get(`/${payload}`);
+    return axios.get(``, JSON.stringify(payload, null, 2));
 };
 
 function* workerCreateRoutes({payload}) {

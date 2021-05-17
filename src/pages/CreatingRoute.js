@@ -98,7 +98,7 @@ function CreatingRoute() {
                                             touched.complexity && errors.complexity && <p className="creating-route__error" >{errors.complexity}</p>
                                         }
                                     </div>
-                                    <div className="creating-route__col">
+                                    <div className="creating-route__col" style={{ marginLeft: "25px"}}>
                                         <h3 className="creating-route__title">Регион</h3>
                                         <input 
                                             className = "creating-route__input" 
@@ -131,7 +131,7 @@ function CreatingRoute() {
                                             touched.duration && errors.duration && <p className="creating-route__error">{errors.duration}</p>
                                         }
                                     </div>
-                                    <div className="creating-route__col">
+                                    <div className="creating-route__col" style={{ marginLeft: "25px"}}>
                                         <h3 className="creating-route__title">Ключевые слова</h3>
                                         <input 
                                             style={{width: "500px"}}
