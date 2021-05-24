@@ -1,20 +1,13 @@
 import {SAVE_BLOG} from "../action/blog";
 
 const defaultState = {
-    list:[
-        {title: "da", subtitle: "Создание сервиса", id: 5, date: "25/07/2001"},
-        {title: "da", subtitle: "...", id: 6},
-        {title: "da", subtitle: "...", id: 7},
-        {title: "da", subtitle: "...", id: 8},
-        {title: "da", subtitle: "...", id: 9},
-        {title: "da", subtitle: "...", id: 15},
-        {title: "da", subtitle: "...", id: 55},
-        {title: "da", subtitle: "...", id: 54},
-        {title: "da", subtitle: "...", id: 56},
-        {title: "da", subtitle: "...", id: 57},
-        {title: "da", subtitle: "...", id: 58},
-        {title: "da", subtitle: "...", id: 59},
-    ],
+    posts:[],
+    pageModel:{
+        pageNumber: 1,
+        totalPages: 0,
+        hasPreviousPage: true,
+        hasNextPage: true,
+    }
 };
 
 export default function  blog (state = defaultState, action) {
@@ -22,7 +15,8 @@ export default function  blog (state = defaultState, action) {
         case SAVE_BLOG:
             return{
                 ...state,
-                list: action.payload,
+                pageModel: action.payload.pageModel,
+                posts: action.payload.posts,
             }
         default:
             return state;

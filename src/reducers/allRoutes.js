@@ -8,10 +8,12 @@ const defaultState = {
             coordinates:[],
             duration: null,
             complexity: null,
-            discription: null,
+            description: null,
             length: null,
             region: null,
             keyPoints: null,
+            rating: null,
+            userHas: null,
         },
     ],
 };

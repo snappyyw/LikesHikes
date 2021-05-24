@@ -1,43 +1,17 @@
 import { SAVE_ROUTES } from "../action/route";
 
 const defaultState = {
-    id:1,
-    name: "Первый путь",
-    coordinates:[
-        {lat: 57.772369010645065, lng: 40.936606444694654},
-        {lat: 57.76816917100584, lng: 40.92774442610945},
-        {lat: 57.76763700388096, lng: 40.92626384673323},
-        {lat: 57.76522212553052, lng: 40.92122129378523},
-        {lat: 57.7670533276977, lng: 40.91720870909895},
-        {lat: 57.769113762477, lng: 40.91304703179334},
-        {lat: 57.76960450264207, lng: 40.91220450827767},
-        {lat: 57.771332492520564, lng: 40.91489744612862},
-        {lat: 57.772959840431994, lng: 40.91128637804055},
-        {lat: 57.77407983046742, lng: 40.90884281393749},
-        {lat: 57.77593918844511, lng: 40.90489460226757},
-        {lat: 57.77723998480453, lng: 40.903467667071645},
-        {lat: 57.77827542537315, lng: 40.90262008902294},
-        {lat: 57.77912399168643, lng: 40.90042903664321},
-        {lat: 57.78003353173144, lng: 40.897193567365875},
-        {lat: 57.780645599242966, lng: 40.89493112400682},
-        {lat: 57.77979899844024, lng: 40.894963310514996},
-        {lat: 57.77838032556983, lng: 40.89515642956407},
-        {lat: 57.77800848676836, lng: 40.89512424305589},
-        {lat: 57.77787119147379, lng: 40.89558558300645},
-        {lat: 57.77724775536802, lng: 40.89580015972764},
-        {lat: 57.776589863481, lng: 40.89590744808824},
-        {lat: 57.77633814515417, lng: 40.89587526158006},
-        {lat: 57.77623516896932, lng: 40.89542465046556},
-        {lat: 57.77620084350911, lng: 40.8949096663347},
-        {lat: 57.775399906842495, lng: 40.89479164913804},
-        {lat: 57.774810634953425, lng: 40.89483456448228},
-        {lat: 57.77391812718172, lng: 40.89458780125291},
-    ],
-    duration: "25 часов",
-    complexity: "Сложный",
-    discription: "Повседневная практика показывает, что реализация намеченных плановых заданий в значительной степени обуславливает создание модели развития. Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании новых предложений.",
-    region: "Центральный",
-    keyPoints: ["Первый", "Кострома", "Монастырь"],
+    id: null,
+    name: null,
+    coordinates:[],
+    length: null,
+    complexity: null,
+    description: null,
+    region: null,
+    keyPoints: null,
+    rating: null,
+    duration: null,
+    routeReviewModels: [],
 };
 
 export default function  routers (state = defaultState, action) {
@@ -45,7 +19,17 @@ export default function  routers (state = defaultState, action) {
         case SAVE_ROUTES:
             return{
                 ...state,
-                state: action.payload
+                id: action.payload.id,
+                complexity: action.payload.complexity,
+                coordinates: action.payload.coordinates,
+                description: action.payload.description,
+                keyPoints: action.payload.keyPoints,
+                length: action.payload.length,
+                duration: action.payload.duration,
+                name: action.payload.name,
+                rating: action.payload.rating,
+                region: action.payload.region,
+                routeReviewModels: action.payload.routeReviewModels,
             }
         default:
             return state;

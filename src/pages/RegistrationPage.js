@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch} from 'react-redux';
 
+
 import {registration} from '../action/user';
 import {SecondHeader} from '../components';
 
@@ -10,7 +11,7 @@ function RegistrationPage() {
     const dispatch = useDispatch();
     const validationsSchema = yup.object().shape({
 
-        login: yup.string()
+        userName: yup.string()
         .required('Обязательное поле')
         .matches(/^[^\s][0-9a-zA-Zа-яА-я!@#$%^&*]{5,}$/,'Логин должен содержать более 4 символов и не содержать пробелов'),
 
@@ -37,7 +38,7 @@ function RegistrationPage() {
                 <Formik
                     initialValues = {
                         {
-                            login: '',
+                            userName: '',
                             email: '',
                             password: '',
                             confirmPassword: '',
@@ -54,13 +55,13 @@ function RegistrationPage() {
                                 onChange = {handleChange} 
                                 onBlur = {handlBlur} 
                                 value = {values.name}
-                                name = "login"
+                                name = "userName"
                                 type = "text" 
                                 size = "40" 
                                 placeholder = "Придумайте логин">
                             </input>
                             {
-                                touched.login && errors.login && <p className = "registration__error">{errors.login}</p>
+                                touched.userName && errors.userName && <p className = "registration__error">{errors.userName}</p>
                             }
                             <input 
                                 className = "registration__input" 
@@ -101,9 +102,7 @@ function RegistrationPage() {
                             {
                                 touched.confirmPassword && errors.confirmPassword && <p className="registration__error">{errors.confirmPassword}</p>
                             }
-                            <div>
-                                <button className = "registration__btn" onClick = {handleSubmit} type = "submit">Регистрация</button>
-                            </div>
+                            <button className = "registration__btn" onClick = {handleSubmit} type = "submit">Регистрация</button>
                         </>
                     )}
                 </Formik>

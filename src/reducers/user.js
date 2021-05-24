@@ -1,13 +1,12 @@
-import { SET_USER, LOGOUT} from "../action/user";
+import { SET_USER, LOGOUT, SAVE_USER_DATA} from "../action/user";
 
 const defaultState = {
-    currentUser: {
-        id: 1,
-        login: "Snippy",
-        email: "snippymr@yandex.ru",
-        routes: 5,
-        completed: 1,
-    },
+    userName: null,
+    email: null,
+    routesCount: null,
+    passedRoutesCount: null,
+    isAdmin: null,
+    userRoutes: [],
 };
 
 export default function  user (state = defaultState, action) {
@@ -15,13 +14,22 @@ export default function  user (state = defaultState, action) {
         case SET_USER:
             return{
                 ...state,
-                currentUser: action.payload,
+                userName: action.payload.userName,
+                email: action.payload.email,
+                isAdmin: action.payload.isAdmin,
+                routesCount: action.payload.routesCount,
+                passedRoutesCount: action.payload.passedRoutesCount,
+            }
+        case SAVE_USER_DATA:
+            return{
+                ...state,
+                userRoutes: action.payload,
             }
         case LOGOUT:
             localStorage.removeItem('token')
             return{
                 ...state,
-                currentUser: undefined,
+                userName: null,
             }
         default:
             return state;

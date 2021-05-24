@@ -5,5 +5,9 @@ import {watchBlog} from './sageBlog';
 import {watchRoute} from './sageRoutes'
 
 export function* rootWatcher() {
-    yield all([watchUser(), watchBlog(), watchRoute()]);
+    yield all([
+        watchUser(),
+        watchBlog(), 
+        watchRoute()
+    ]);
 }

@@ -14,7 +14,7 @@ function wrappedMap({routes}) {
             defaultCenter={{lat: 63, lng: 90,}}
         >
           {
-            routes && 
+            routes &&
             routes.map(
               cord => <PolylineOrMarker сoordinates={cord.coordinates} date={cord} key={cord.id}/>
             )

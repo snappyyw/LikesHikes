@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom';
 
 function MainFooter() {
-    const user = useSelector(state => state.user.currentUser);
+    const userName = useSelector(state => state.user.userName);
 
     return(
         <footer className = 'footer'>
@@ -22,7 +22,7 @@ function MainFooter() {
                     <li><Link className = "footer-nav__element" to = '/Routes'>Маршруты</Link></li>
                     <li><Link  className = "footer-nav__element" to = '/Blog'>Блог</Link></li>
                     {
-                        user && 
+                        userName &&
                         <li><Link className = "footer-nav__element" to = '/Profile'>Профиль</Link></li>
                     }
                 </ul>

@@ -8,19 +8,19 @@ import {createRoute} from '../action/creatingRoutes';
 
 function CreatingRoute() {
     const validationsSchema = yup.object().shape({
-
-        title: yup.string()
+        routeName: yup.string()
         .required('Обязательное поле')
         .matches(/^[^\s][0-9a-zA-Zа-яА-я!@#$%^&*]{3,}$/,'Название должен содержать более 3 символов и не содержать пробелов'),
 
-        discription: yup.string()
+        description: yup.string()
         .required('Обязательное поле'),
 
         region: yup.string()
         .required('Обязательное поле'),
 
         duration: yup.string()
-        .required('Обязательное поле'),
+        .required('Обязательное поле')
+        .matches(/[0-9]$/,'Продолжительность должна содержать число'),
 
         complexity: yup.string()
         .required('Выберите сложность маршрута'),
@@ -37,12 +37,13 @@ function CreatingRoute() {
                         initialValues = {
                             {
                                 coordinates: coordinates,
-                                title: '',
-                                discription: '',
+                                routeName: '',
+                                description: '',
                                 complexity: '',
                                 region: '',
                                 keyPoints: '',
                                 duration: '',
+                                createdById: null,
                             }
                         }
                         validateOnBlur
@@ -57,13 +58,13 @@ function CreatingRoute() {
                                     onChange = {handleChange} 
                                     onBlur = {handlBlur} 
                                     value = {values.name}
-                                    name = "title"
+                                    name = "routeName"
                                     type = "text" 
                                     placeholder = "Медведь-Камень"
                                 >
                                 </input>
                                 {
-                                    touched.title && errors.title && <p className = "creating-route__error">{errors.title}</p>
+                                    touched.routeName && errors.routeName && <p className = "creating-route__error">{errors.routeName}</p>
                                 }
                                 <h3 className="creating-route__title">Описание</h3>
                                 <textarea 
@@ -72,12 +73,12 @@ function CreatingRoute() {
                                     onChange = {handleChange} 
                                     onBlur = {handlBlur} 
                                     value = {values.name}
-                                    name = "discription"
+                                    name = "description"
                                     placeholder = "Гора Медведь-Камень пользуется большой популярностью..."
                                 >
                                 </textarea>
                                 {
-                                    touched.discription && errors.discription && <p className="creating-route__error">{errors.discription}</p>
+                                    touched.description && errors.description && <p className="creating-route__error">{errors.description}</p>
                                 }
                                 <div className="creating-route__row">
                                     <div className="creating-route__col">
@@ -125,7 +126,7 @@ function CreatingRoute() {
                                             value = {values.name}
                                             name = "duration"
                                             type = "text" 
-                                            placeholder = "25 часов">
+                                            placeholder = "25">
                                         </input>
                                         {
                                             touched.duration && errors.duration && <p className="creating-route__error">{errors.duration}</p>

@@ -1,36 +1,15 @@
 import React from 'react';
 import {Polyline, Marker, InfoWindow} from "react-google-maps";
 import { useHistory } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
-function PolylineOrMarker({сoordinates, date}) {
+import {difficultyTranslation, determiningComplexity} from '../utils/helpFuncion';
+
+function PolylineAndMarker({сoordinates, date}) {
     const [selectedRoute, setSelectedRoute] = React.useState(null);
+    const user = useSelector(state => state.user);
+    const isAdmin = useSelector(state => state.user.isAdmin);
     const history = useHistory();
-
-    function determiningComplexity(complexity) {
-        if (complexity === "Средний"){
-            return "#ffa500";
-        }
-        else if(complexity === "Сложный"){
-            return "#ff0000";
-        }
-        return "#008000";
-    }
-
-    function stringReduction(str, num) {
-        let res = "";
-    
-        if(str.length > num){
-    
-            for(let i=0; i<num; i++){
-                res += str[i];
-            }
-        }
-        else{
-            res=str;
-        }
-    
-        return res + "...";
-    }
 
     return(
         <>
@@ -62,14 +41,29 @@ function PolylineOrMarker({сoordinates, date}) {
                 >
                     <div className="info-window">
                         <h2 className="info-window__title">{date.name}</h2>
-                        <p className="info-window__text">{stringReduction(date.discription, 100)}</p>
-                        <p className="info-window__complexity">Сложность: {date.complexity}</p>
+                        <p className="info-window__text">{date.description}</p>
+                        <p className="info-window__complexity">Сложность: {difficultyTranslation(date.complexity)}</p>
                         <button className="info-window__button" onClick={() => history.push({
                             pathname: `/Routes/${date.id}`,
                             })}
                         >
-                        Подробнее
+                            Подробнее
                         </button>
+                        {
+                            user.userName &&
+                            date.userHas &&
+                            <button className="info-window__button" onClick={() => console.log()}
+                            >
+                                Добавить
+                            </button>
+                        }
+                        {
+                            isAdmin &&
+                            <button className="info-window__button" onClick={() => console.log()}
+                            >
+                                Удалить
+                            </button>
+                        }
                     </div>
                 </InfoWindow>
             }
@@ -77,4 +71,4 @@ function PolylineOrMarker({сoordinates, date}) {
     )
 }
 
-export default PolylineOrMarker;
+export default PolylineAndMarker;

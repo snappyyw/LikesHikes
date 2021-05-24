@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import {ExitOrEntry} from './index';
 
 function MainHeder() {
-    const user = useSelector(state => state.user.currentUser);
+    const userName = useSelector(state => state.user.userName);
     
     return(
         <header className = "header">
@@ -37,7 +37,7 @@ function MainHeder() {
                         </NavLink>
                     </li>
                     {
-                        user && 
+                        userName &&
                         <li>
                             <NavLink 
                                 activeStyle = {{color: "white", padding: "5px", backgroundColor: "rgb(28, 148, 64)", borderRadius: "10px", textDecoration: "none"}} 
@@ -49,7 +49,7 @@ function MainHeder() {
                     }
 
                 </ul>
-                <ExitOrEntry user = {user}/>
+                <ExitOrEntry userName = {userName}/>
             </div>
         </header>
     )

@@ -21,9 +21,9 @@
     margin: 9px;
     text-shadow: black 1px 1px 1px;
     color: white;
-    transition: 0.7s;
     font-size: 24px;
     &:hover {
+      text-decoration: none;
       cursor: pointer;
       color: forestgreen;
     }

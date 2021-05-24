@@ -5,11 +5,11 @@ import { NavLink } from 'react-router-dom';
 
 import {MainHeder, MainFooter, MyMap} from '../components';
 import {removeCoordinat} from '../action/creatingRoutes';
-import {getMyRoute} from '../action/myRoutes';
+import {GetUserRoute} from '../action/user';
 
 
 function ProfilePage() {
-    const user = useSelector(state => state.user.currentUser);
+    const user = useSelector(state => state.user);
     const coords  = useSelector(state => state.creatingRoutes.coordinates);
     const dispatch = useDispatch();
     const [creation , setCreation ] = React.useState(false);
@@ -22,7 +22,7 @@ function ProfilePage() {
     };
 
     React.useEffect(() => {
-        dispatch(getMyRoute(user.id));
+        dispatch(GetUserRoute());
     }, [])
 
     return(
@@ -32,10 +32,10 @@ function ProfilePage() {
                 <div className = "profile__body">
                     <div className = "user-info">
                         <AccountCircleSharpIcon className = "user-info__icon" style = {{ fontSize: 100 }}/>
-                        <p className = "user-info__text">Login: {user.login}</p>
+                        <p className = "user-info__text">Login: {user.userName}</p>
                         <p className = "user-info__text">Email: {user.email}</p>
-                        <p className = "user-info__text">Кол-во моих маршрутов: {user.routes}</p>
-                        <p className = "user-info__text">Кол-во пройденых маршрутов: {user.completed }</p>
+                        <p className = "user-info__text">Кол-во моих маршрутов: {user.routesCount}</p>
+                        <p className = "user-info__text">Кол-во пройденых маршрутов: {user.passedRoutesCount}</p>
                     </div>
                     <div className = "my-routes">
                         <h3 className = "my-routes__title">Мои маршруты</h3>
