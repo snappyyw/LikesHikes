@@ -5,8 +5,8 @@ const defaultState = {
     pageModel:{
         pageNumber: 1,
         totalPages: 0,
-        hasPreviousPage: true,
-        hasNextPage: true,
+        hasPreviousPage: false,
+        hasNextPage: false,
     }
 };
 

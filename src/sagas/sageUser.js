@@ -11,7 +11,6 @@ import {
 import {removeCoordinat, CREATE_ROUTE} from "../action/creatingRoutes";
 
 
-
 function requestCompleteRoute(payload) {
     return axios.put(`/api/PersonalArea/ChangeRoutePassed`, {RouteId: payload},
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});

@@ -63,10 +63,9 @@ function ProfilePolylineAndMarker({сoordinates, date}) {
                             </button>
 
                         {
-                            // isAdmin && let date = prop.location.customData
                             date.isPassed &&
                             <button className="info-window__button" onClick={() => history.push({
-                                pathname: `/CreatingReport`,
+                                pathname: `/Profile/Report`,
                                 customData: date.id,
                             })}
                             >

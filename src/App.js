@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RegistrationPage, AuthorizationPage,
     BlogPage, MainPage ,RoutesPage,
     ProfilePage, NotFoundPage,
-    RouteDetailsPage, CreatingRoute
+    RouteDetailsPage, CreatingRoute,
+    ReportPage,
 } from "./pages";
 import { auth } from './action/user';
 
@@ -24,10 +25,15 @@ function App() {
         <Switch>
             <Route exact path='/' component={MainPage} />
             <Route path='/Blog' component={BlogPage} />
+
             <Route exact path='/Routes' component={RoutesPage} />
             {
                 userName &&
                 <Route exact path='/Profile' component={ProfilePage} />
+            }
+            {
+                userName &&
+                <Route path='/Profile/Report' component={ReportPage} />
             }
             <Route path='/Registration' component={RegistrationPage} />
             <Route path='/Authorization' component={AuthorizationPage} />

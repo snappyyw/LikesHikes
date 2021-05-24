@@ -3,10 +3,39 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 import {GET_ALL_ROUTES, receiveAllRoute} from "../action/allRoutes";
-import {GET_ROUTES, receiveRoute} from "../action/route";
+import {
+    GET_ROUTES, receiveRoute,
+    ADD_ROUTE,
+} from "../action/route";
+
+
+function requestAddRoute(payload) {
+    return axios.post(`/api/Routes/AddRouteToUser`, {RouteId: payload},
+        {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
+};
+
+function* workerAddRoute({payload}) {
+    try{
+        yield call(requestAddRoute, payload);
+        const response = yield call(requestAllRoute);
+        yield put(receiveAllRoute(response.data));
+        swal("Маршрут добавлен", {
+            icon: "success",
+            timer: 3000,
+        });
+    }
+    catch (err) {
+        swal( err.toString(), {
+            icon: "error",
+            title: "Уупс...",
+            timer: 5000,
+        });
+    }
+}
 
 function requestAllRoute() {
-    return axios.get('/api/Routes/GetAllRoutes');
+    return  axios.get('/api/Routes/GetAllRoutes',
+        {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
 function* workerAllRoute() {
@@ -54,4 +83,5 @@ function* workerRoute({payload}) {
 export function* watchRoute() {
     yield takeEvery (GET_ALL_ROUTES, workerAllRoute);
     yield takeEvery (GET_ROUTES, workerRoute);
+    yield takeEvery (ADD_ROUTE, workerAddRoute);
 }

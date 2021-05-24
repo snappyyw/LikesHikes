@@ -1,15 +1,17 @@
 import React from 'react';
 import {Polyline, Marker, InfoWindow} from "react-google-maps";
 import { useHistory } from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {difficultyTranslation, determiningComplexity} from '../utils/helpFuncion';
+import {addRoute} from '../action/route'
 
 function PolylineAndMarker({сoordinates, date}) {
     const [selectedRoute, setSelectedRoute] = React.useState(null);
     const user = useSelector(state => state.user);
     const isAdmin = useSelector(state => state.user.isAdmin);
     const history = useHistory();
+    const dispatch = useDispatch();
 
     return(
         <>
@@ -51,8 +53,8 @@ function PolylineAndMarker({сoordinates, date}) {
                         </button>
                         {
                             user.userName &&
-                            date.userHas &&
-                            <button className="info-window__button" onClick={() => console.log()}
+                            !date.userHas &&
+                            <button className="info-window__button" onClick={() => dispatch(addRoute(date.id))}
                             >
                                 Добавить
                             </button>
