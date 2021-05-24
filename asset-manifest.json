@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/LikesHikes/static/css/main.f3295ed0.chunk.css",
+    "main.js": "/LikesHikes/static/js/main.a6b21ff1.chunk.js",
+    "main.js.map": "/LikesHikes/static/js/main.a6b21ff1.chunk.js.map",
+    "runtime-main.js": "/LikesHikes/static/js/runtime-main.599db0a0.js",
+    "runtime-main.js.map": "/LikesHikes/static/js/runtime-main.599db0a0.js.map",
+    "static/js/2.68e576d1.chunk.js": "/LikesHikes/static/js/2.68e576d1.chunk.js",
+    "static/js/2.68e576d1.chunk.js.map": "/LikesHikes/static/js/2.68e576d1.chunk.js.map",
+    "index.html": "/LikesHikes/index.html",
+    "static/css/main.f3295ed0.chunk.css.map": "/LikesHikes/static/css/main.f3295ed0.chunk.css.map",
+    "static/js/2.68e576d1.chunk.js.LICENSE.txt": "/LikesHikes/static/js/2.68e576d1.chunk.js.LICENSE.txt",
+    "static/media/app.scss": "/LikesHikes/static/media/registration.9c4b7c02.jpg",
+    "static/media/forest1.61b96626.jpg": "/LikesHikes/static/media/forest1.61b96626.jpg",
+    "static/media/forest2.8f736bac.jpg": "/LikesHikes/static/media/forest2.8f736bac.jpg",
+    "static/media/forest3.43ff946a.jpg": "/LikesHikes/static/media/forest3.43ff946a.jpg",
+    "static/media/forest4.6c7df074.jpg": "/LikesHikes/static/media/forest4.6c7df074.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.599db0a0.js",
+    "static/js/2.68e576d1.chunk.js",
+    "static/css/main.f3295ed0.chunk.css",
+    "static/js/main.a6b21ff1.chunk.js"
+  ]
+}
