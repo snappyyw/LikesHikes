@@ -1,16 +1,15 @@
 import React from 'react';
 import { Comment, Icon } from 'semantic-ui-react';
-import { useSelector, useDispatch } from 'react-redux';
+import {useDispatch} from "react-redux";
 
-import {deleteComment} from "../action/route";
+import {deleteComment} from '../action/route'
 
-function ListComments({data, idRoute}) {
-    const isAdmin = useSelector(state => state.user.isAdmin);
+function MyComments({data, idRoute}) {
     const dispatch = useDispatch();
 
     return(
         <>
-            <h3>Комментарии:</h3>
+            <h3>Ваш отзыв:</h3>
             <Comment.Group>
                 <Comment>
                     <Comment.Avatar as='a' src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
@@ -25,15 +24,12 @@ function ListComments({data, idRoute}) {
                         <Comment.Text>
                             {data.text}
                         </Comment.Text>
-                        {
-                            isAdmin &&
-                            <Comment.Actions>
-                                <Comment.Action onClick={() => dispatch(deleteComment(
-                                    {idComment: data.id, idRoute: idRoute}
-                                    ))}
-                                >Удалить</Comment.Action>
-                            </Comment.Actions>
-                        }
+                        <Comment.Actions>
+                            <Comment.Action onClick={() => dispatch(deleteComment(
+                                {idComment: data.id, idRoute: idRoute}
+                            ))}
+                            >Удалить</Comment.Action>
+                        </Comment.Actions>
                     </Comment.Content>
                 </Comment>
             </Comment.Group>
@@ -41,4 +37,4 @@ function ListComments({data, idRoute}) {
     )
 }
 
-export default ListComments;
+export default MyComments;

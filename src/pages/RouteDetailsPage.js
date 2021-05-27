@@ -4,17 +4,33 @@ import Grid from '@material-ui/core/Grid';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import {
+    Button, TextArea,
+} from 'semantic-ui-react';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
-import {MainHeder, MainFooter, DetailsMap, ListComments} from '../components';
-import {getRoute} from '../action/route';
+
+import {
+    MainHeder, MainFooter,
+    DetailsMap, MyComments,
+    ListComments,
+} from '../components';
+import {getRoute, addComment} from '../action/route';
 import {difficultyTranslation} from '../utils/helpFuncion';
+
 
 function RouteDetailsPage(prop) {
     const id = prop.location.pathname.split('/')[2];
     const date = useSelector(state => state.routes);
     const user = useSelector(state => state.user);
-    const [value, setValue] = React.useState(0);
+    const [valueRating, setValueRating] = React.useState(3);
     const dispatch = useDispatch();
+    const validationsSchema = yup.object().shape({
+        text: yup.string()
+            .required('Обязательное поле'),
+        routeId: yup.string(),
+    });
 
     React.useEffect(() => {
         dispatch(getRoute(id))
@@ -78,28 +94,70 @@ function RouteDetailsPage(prop) {
                         }
                         {
                             date.name &&
-                            // user.userName &&
+                            user.userName &&
+                            !date.userReview &&
                             <div className="estimation">
-                                <p className="estimation__text">
-                                        Оцените маршрут
-                                </p>
-                                <Rating
-                                    name="simple-controlled"
-                                    value={value}
-                                    precision={0.5}
-                                    size="large"
-                                    onChange={(event, newValue) => {
-                                        setValue(newValue);
-                                    }}
-                                />
+                                <Box component="fieldset" mb={3} borderColor="transparent">
+                                    <Typography variant="h5" component="legend">Оцените маршрут</Typography>
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={valueRating}
+                                        precision={1}
+                                        size="large"
+                                        onChange={(event, newValue) => {
+                                            setValueRating(newValue);
+                                        }}
+                                    />
+                                </Box>
+                                <Formik
+                                    initialValues = {
+                                        {
+                                            text: '',
+                                            routeId: date.id,
+                                        }
+                                    }
+                                    validateOnBlur
+                                    validationSchema = {validationsSchema}
+                                    onSubmit = {(values) => dispatch(addComment({...values, rating: valueRating}))}
+                                >
+                                    {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
+                                        <>
+                                            <textarea
+                                                style={{height: "100px", width: "60%", resize: "none"}}
+                                                className = "creating-route__input"
+                                                onChange = {handleChange}
+                                                onBlur = {handlBlur}
+                                                value = {values.name}
+                                                name = "text"
+                                            >
+                                            </textarea>
+                                            {
+                                                touched.text && errors.text && <p className="creating-route__error">{errors.text}</p>
+                                            }
+                                            <br/>
+                                            <Button content='Добавить отзыв'
+                                                labelPosition='left'
+                                                icon='edit'
+                                                primary
+                                                type='submit'
+                                                onClick = {handleSubmit}
+                                            />
+                                        </>
+                                    )}
+                                </Formik>
                             </div>
                         }
                         {
                             date.name &&
-                            // user.userName &&
-                            <div className="comments">
-                                <ListComments />
-                            </div>
+                            user.userName &&
+                            date.userReview &&
+                            <MyComments data={date.userReview} idRoute={id} />
+                        }
+                        {
+                            date.routeReviews &&
+                            date.routeReviews.map( (data) =>
+                                <ListComments key={data.id} data={data} idRoute={id} />
+                            )
                         }
                     </div>
                 </div>

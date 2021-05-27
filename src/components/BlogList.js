@@ -22,7 +22,8 @@ function BlogList() {
                         </p>
                     </Card>
                 </Col>
-            )}
+                )
+            }
         </Row>
     )
 }

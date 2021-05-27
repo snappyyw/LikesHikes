@@ -30,7 +30,7 @@ function PolylineAndMarker({сoordinates, date}) {
                 position={сoordinates[0]}
                 onClick={() => setSelectedRoute(date)}
                 icon={{
-                    url: '/marker.png',
+                    url: 'marker.png',
                     scaledSize: new window.google.maps.Size(30, 30)
                 }}
 

@@ -9,5 +9,6 @@ export {default as BlogList} from './BlogList';
 export {default as PolylineOrMarker} from './PolylineAndMarker';
 export {default as DetailsMap} from './DetailsMap';
 export {default as ProfilePolylineAndMarker} from './ProfilePolylineAndMarker';
+export {default as MyComments} from './MyComments';
 export {default as ListComments} from './ListComments';
 

@@ -1,6 +1,7 @@
 import {put, takeEvery, call} from 'redux-saga/effects';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { push } from 'react-router-redux';
 
 import {
     REGISTRATION, LOGIN, setUser,
@@ -141,6 +142,7 @@ function* workerRegistration({payload}) {
                 timer: 5000,
             });
         }
+        yield put(push('/'));
     }
     catch (err) {
         swal( err.toString(), {

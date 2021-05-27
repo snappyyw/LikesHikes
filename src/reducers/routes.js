@@ -11,7 +11,8 @@ const defaultState = {
     keyPoints: null,
     rating: null,
     duration: null,
-    routeReviewModels: [],
+    routeReview: [],
+    userReview: [],
 };
 
 export default function  routers (state = defaultState, action) {
@@ -29,7 +30,8 @@ export default function  routers (state = defaultState, action) {
                 name: action.payload.name,
                 rating: action.payload.rating,
                 region: action.payload.region,
-                routeReviewModels: action.payload.routeReviewModels,
+                routeReviews: action.payload.routeReviews,
+                userReview: action.payload.userReview,
             }
         default:
             return state;
