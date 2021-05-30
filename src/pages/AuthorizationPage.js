@@ -9,7 +9,6 @@ import {login} from '../action/user'
 
 function AuthorizationPage() {
     const dispatch = useDispatch();
-    const userName = useSelector(state => state.user.userName);
     const history = useHistory();
     const validationsSchema = yup.object().shape({
         email: yup.string()
@@ -33,7 +32,7 @@ function AuthorizationPage() {
                     }
                     validateOnBlur
                     validationSchema = {validationsSchema}
-                    onSubmit = {(values) => {dispatch(login(values), userName && history.push('/'))}}
+                    onSubmit = {(values) => {dispatch(login({values, history}))}}
                 >
                 {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
                     <>

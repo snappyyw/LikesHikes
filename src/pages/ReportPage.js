@@ -1,72 +1,55 @@
 import React from 'react';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux';
+import Grid from "@material-ui/core/Grid";
+import {useHistory} from 'react-router-dom';
 
 import {MainHeder, MainFooter} from '../components';
-import * as yup from "yup";
-import {createRoute} from "../action/creatingRoutes";
-import {Formik} from "formik";
-
+import {getReport , deleteReport} from "../action/user";
 
 function ReportPage(prop) {
-    const dispatch = useDispatch()
-    const id = prop.location.customData;
-    const validationsSchema = yup.object().shape({
-        title: yup.string()
-            .required('Обязательное поле'),
+    const id = prop.location.pathname.split('/')[3];
+    const dispatch = useDispatch();
+    const report = useSelector (state => state.report);
+    const history = useHistory();
 
-        description: yup.string()
-            .required('Обязательное поле'),
-
-    });
+    React.useEffect(() => {
+        dispatch(getReport(id));
+    }, [])
 
     return(
         <>
             <MainHeder/>
             <div className="report">
                 <div className="report__body">
-                    <Formik
-                        initialValues = {
-                            {
-                                title: '',
-                                description: '',
-                            }
-                        }
-                        validateOnBlur
-                        validationSchema = {validationsSchema}
-                        onSubmit = {(values) => dispatch(createRoute(values))}
-                    >
-                        {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
-                            <>
-                                <h3 className="creating-route__title">Название отчета</h3>
-                                <input
-                                    className = "creating-route__input"
-                                    onChange = {handleChange}
-                                    onBlur = {handlBlur}
-                                    value = {values.name}
-                                    name = "routeName"
-                                    type = "text"
+                    {
+                        report &&
+                        <Grid container spacing={7}>
+                            <Grid item xs={12}>
+                                <h2 className="report__title">Отчет</h2>
+                            </Grid>
+                            <Grid item xs={12} sm={3}>
+                                <span className="report__text">Название: </span>
+                            </Grid>
+                            <Grid item xs={12} sm={9}>
+                                <span className="report__text">{report.name}</span>
+                            </Grid>
+                            <Grid item xs={12} sm={3}>
+                                <span className="report__text">Содержание</span>
+                            </Grid>
+                            <Grid item xs={12} sm={9}>
+                                <span className="report__text">{report.text}</span>
+                            </Grid>
+                            <Grid item xs={12} style={{textAlign: 'center'}}>
+                                <button className="report__button" onClick={() => history.push({
+                                    pathname: `/Profile/CreateRouteReport/${id}`,
+                                    state: report})}
                                 >
-                                </input>
-                                {
-                                    touched.routeName && errors.routeName && <p className = "creating-route__error">{errors.routeName}</p>
-                                }
-                                <h3 className="creating-route__title">Описание</h3>
-                                <textarea
-                                    style={{height: "250px", width: "90%", resize: "none"}}
-                                    className = "creating-route__input"
-                                    onChange = {handleChange}
-                                    onBlur = {handlBlur}
-                                    value = {values.name}
-                                    name = "description"
-                                >
-                                </textarea>
-                                {
-                                    touched.description && errors.description && <p className="creating-route__error">{errors.description}</p>
-                                }
-                                <button className = "creating-route__btn" onClick = {handleSubmit} type = "submit">Создать</button>
-                            </>
-                        )}
-                    </Formik>
+                                    Изменить
+                                </button>
+                                <button className="report__button" onClick={() => dispatch(deleteReport({id, history}))}>Удалить</button>
+                            </Grid>
+                        </Grid>
+                    }
                 </div>
             </div>
             <MainFooter/>

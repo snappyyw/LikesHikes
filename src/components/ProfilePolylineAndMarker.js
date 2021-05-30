@@ -1,15 +1,17 @@
 import React from 'react';
 import {Polyline, Marker, InfoWindow} from "react-google-maps";
 import { useHistory } from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {difficultyTranslation, determiningComplexity} from '../utils/helpFuncion';
 import {deleteMyRoute, publishMyRoute, completeRoute} from '../action/user';
+import {Rating} from "semantic-ui-react";
+import {setCoordinat} from "../action/creatingRoutes";
 
 function ProfilePolylineAndMarker({сoordinates, date}) {
     const [selectedRoute, setSelectedRoute] = React.useState(null);
-    const userName = useSelector(state => state.user.userName);
     const dispatch = useDispatch();
+    const userName = useSelector(store => store.user.userName);
     const history = useHistory();
 
     return(
@@ -44,6 +46,9 @@ function ProfilePolylineAndMarker({сoordinates, date}) {
                         <h2 className="info-window__title">{date.name}</h2>
                         <p className="info-window__text">{date.description}</p>
                         <p className="info-window__complexity">Сложность: {difficultyTranslation(date.complexity)}</p>
+                        <p className="info-window__complexity">Регион: {date.region}</p>
+                        <Rating icon='star' defaultRating={date.rating} disabled maxRating={5} />
+                        <br/>
                         <button className="info-window__button" onClick={() => history.push({
                             pathname: `/Routes/${date.id}`,
                             })}
@@ -63,20 +68,40 @@ function ProfilePolylineAndMarker({сoordinates, date}) {
                             </button>
 
                         {
+                            !date.reportExists &&
                             date.isPassed &&
                             <button className="info-window__button" onClick={() => history.push({
-                                pathname: `/Profile/Report`,
-                                customData: date.id,
-                            })}
+                            pathname: `/Profile/CreateRouteReport/${date.id}`})}
                             >
                                 Создать отчет
                             </button>
                         }
                         {
+                            !date.reportExists &&
                             !date.isPassed &&
                             <button className="info-window__button" onClick={() => dispatch(completeRoute(date.id))}
                             >
                                 Пройти
+                            </button>
+                        }
+                        {
+                            date.reportExists &&
+                            <button className="info-window__button" onClick={() => history.push({
+                            pathname: `/Profile/RouteReport/${date.id}`})}
+                            >
+                                Посмотреть отчет
+                            </button>
+                        }
+                        {
+                            date.authorName === userName &&
+                            <button className="info-window__button" onClick={() =>{
+                                dispatch(setCoordinat(сoordinates))
+                                    history.push({
+                                        pathname: `/Profile/Routes`,
+                                        data: date,
+                                    })}}
+                            >
+                                Изменить
                             </button>
                         }
                     </div>

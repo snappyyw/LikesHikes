@@ -5,6 +5,7 @@ import blog from './blog';
 import creatingRoutes from './creatingRoutes';
 import allRoutes from './allRoutes';
 import routes from './routes';
+import report from './report';
 
 export default combineReducers({
     user: user,
@@ -12,4 +13,5 @@ export default combineReducers({
     creatingRoutes: creatingRoutes,
     allRoutes: allRoutes,
     routes: routes,
+    report: report,
 });

@@ -1,0 +1,28 @@
+.report{
+  min-height: 760px;
+  &__body{
+    margin: 0 auto;
+    padding-top: 25px;
+    width: 1400px;
+  }
+  &__title{
+    font-size: 30px;
+    text-align: center;
+  }
+  &__text{
+    font-size: 25px;
+  }
+  &__button{
+    font-size: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.7s;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(212, 224, 158);
+    }
+  }
+}

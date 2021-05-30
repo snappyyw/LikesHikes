@@ -31,10 +31,10 @@ function MyMap({isCreation, isVisibility}) {
           path={coords}
           key={1}
           options={{
-            strokeColor: "#FF0000",
+            strokeColor: "#8b00e0",
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            fillColor: "#ff0000",
+            fillColor: "#8b00e0",
             fillOpacity: 0.35
           }}
         />

@@ -11,7 +11,7 @@ function DetailsMap({routes}) {
 
     return (
         <GoogleMap
-            defaultZoom={12}
+            defaultZoom={10}
             defaultCenter={routes.coordinates[0]}
         >
             <Polyline

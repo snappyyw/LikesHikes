@@ -1,4 +1,4 @@
-import { SET_COORDINAT, REMOVE_COORDINAT, CLEAR_ROUTE} from "../action/creatingRoutes";
+import { SET_COORDINAT, REMOVE_COORDINAT} from "../action/creatingRoutes";
 
 const defaultState = {
     coordinates: [],
@@ -12,6 +12,13 @@ export default function  creatingRoutes (state = defaultState, action) {
                 coordinates: []
             }
         case SET_COORDINAT:
+            if(Array.isArray(action.payload))
+            {
+                return{
+                    ...state,
+                    coordinates: action.payload,
+                }
+            }
             return{
                 ...state,
                 coordinates: [...state.coordinates, action.payload],

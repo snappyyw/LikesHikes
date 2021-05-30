@@ -6,13 +6,14 @@ import { RegistrationPage, AuthorizationPage,
     BlogPage, MainPage ,RoutesPage,
     ProfilePage, NotFoundPage,
     RouteDetailsPage, CreatingRoute,
-    ReportPage,
+    EditReportPage, ReportPage,
+    CreateBlog,
 } from "./pages";
 import { auth } from './action/user';
 
 function App() {
     const dispatch = useDispatch();
-    const userName = useSelector(state => state.user.userName);
+    const user = useSelector(state => state.user);
     const coordinates = useSelector(state => state.creatingRoutes.coordinates);
 
     React.useEffect(() => {
@@ -25,15 +26,22 @@ function App() {
         <Switch>
             <Route exact path='/' component={MainPage} />
             <Route path='/Blog' component={BlogPage} />
-
             <Route exact path='/Routes' component={RoutesPage} />
             {
-                userName &&
+                user.userName &&
                 <Route exact path='/Profile' component={ProfilePage} />
             }
             {
-                userName &&
-                <Route path='/Profile/Report' component={ReportPage} />
+                user.userName &&
+                <Route exact path='/Profile/CreateRouteReport/:id' component={EditReportPage} />
+            }
+            {
+                user.userName &&
+                <Route path='/Profile/RouteReport/:id' component={ReportPage} />
+            }
+            {
+                user.isAdmin &&
+                <Route path='/CreateBlog' component={CreateBlog} />
             }
             <Route path='/Registration' component={RegistrationPage} />
             <Route path='/Authorization' component={AuthorizationPage} />

@@ -12,4 +12,26 @@
     padding-top: 30px;
     padding-bottom: 25px;
   }
+  .section-filter{
+    padding-top: 15px;
+    text-align: center;
+    &__input{
+      width: 250px;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 15px;
+      margin-left: 25px;
+    }
+    &__btn{
+      margin-top: 25px;
+      font-size: 18px;
+      width: 150px;
+      padding: 15px;
+      border-radius: 10px;
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(212, 224, 158);
+      }
+    }
+  }
 }

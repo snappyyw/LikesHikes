@@ -1,11 +1,11 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import Grid from '@material-ui/core/Grid';
-import Rating from '@material-ui/lab/Rating';
+import { Rating } from 'semantic-ui-react'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import {
-    Button, TextArea,
+    Button,
 } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -33,7 +33,7 @@ function RouteDetailsPage(prop) {
     });
 
     React.useEffect(() => {
-        dispatch(getRoute(id))
+        dispatch(getRoute(id));
     }, []);
 
     return(
@@ -41,13 +41,16 @@ function RouteDetailsPage(prop) {
             <MainHeder/>
                 <div className = "route-details">
                     <div className="route-details__body">
-                        <DetailsMap
+                        {
+                            id === date.id &&
+                            <DetailsMap
                                 routes={date}
-                                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,place&key=AIzaSyCm18OXr7nUO_hsYpActf9Dwjc0_jmpK9g`}  
+                                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,place&key=AIzaSyCm18OXr7nUO_hsYpActf9Dwjc0_jmpK9g`}
                                 loadingElement={<div style={{ height: `100%` }} />}
                                 containerElement={<div style={{ height: `400px` }} />}
                                 mapElement={<div style={{ height: `100%` }} />}
-                        />
+                            />
+                        }
                         {
                             date.name &&
                             <Grid container spacing={4}>
@@ -76,7 +79,7 @@ function RouteDetailsPage(prop) {
                                     <span className="route-details__headers">Рейтинг: </span>
                                 </Grid>
                                 <Grid item xs={12} sm={9}>
-                                    <span className="route-details__text">{date.rating}</span>
+                                    <span className="route-details__text">{date.rating ? date.rating : 'нет'}</span>
                                 </Grid>
                                 <Grid item xs={12} sm={3}>
                                     <span className="route-details__headers">Регион: </span>
@@ -85,7 +88,7 @@ function RouteDetailsPage(prop) {
                                     <span className="route-details__text">{date.region}</span>
                                 </Grid>
                                 <Grid item xs={12} sm={3}>
-                                    <span className="route-details__headers">Длительность: </span>
+                                    <span className="route-details__headers">Расстояние: </span>
                                 </Grid>
                                 <Grid item xs={12} sm={9}    >
                                     <span className="route-details__text">{Math.round(date.length)} км</span>
@@ -96,32 +99,35 @@ function RouteDetailsPage(prop) {
                             date.name &&
                             user.userName &&
                             !date.userReview &&
+                            date.isPublished &&
                             <div className="estimation">
                                 <Box component="fieldset" mb={3} borderColor="transparent">
                                     <Typography variant="h5" component="legend">Оцените маршрут</Typography>
                                     <Rating
-                                        name="simple-controlled"
-                                        value={valueRating}
-                                        precision={1}
-                                        size="large"
-                                        onChange={(event, newValue) => {
-                                            setValueRating(newValue);
-                                        }}
+                                        size='huge'
+                                        icon='star'
+                                        defaultRating={valueRating}
+                                        maxRating={5}
+                                        onRate={(e) => setValueRating(e.target.ariaPosInSet)}
                                     />
                                 </Box>
-                                <Formik
-                                    initialValues = {
-                                        {
-                                            text: '',
-                                            routeId: date.id,
+                                {
+                                    date.isPublished &&
+                                    date.name &&
+                                    user.userName &&
+                                    <Formik
+                                        initialValues = {
+                                            {
+                                                text: '',
+                                                routeId: date.id,
+                                            }
                                         }
-                                    }
-                                    validateOnBlur
-                                    validationSchema = {validationsSchema}
-                                    onSubmit = {(values) => dispatch(addComment({...values, rating: valueRating}))}
-                                >
-                                    {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
-                                        <>
+                                        validateOnBlur
+                                        validationSchema = {validationsSchema}
+                                        onSubmit = {(values) => dispatch(addComment({...values, rating: valueRating}))}
+                                    >
+                                        {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
+                                            <>
                                             <textarea
                                                 style={{height: "100px", width: "60%", resize: "none"}}
                                                 className = "creating-route__input"
@@ -131,20 +137,21 @@ function RouteDetailsPage(prop) {
                                                 name = "text"
                                             >
                                             </textarea>
-                                            {
-                                                touched.text && errors.text && <p className="creating-route__error">{errors.text}</p>
-                                            }
-                                            <br/>
-                                            <Button content='Добавить отзыв'
-                                                labelPosition='left'
-                                                icon='edit'
-                                                primary
-                                                type='submit'
-                                                onClick = {handleSubmit}
-                                            />
-                                        </>
-                                    )}
-                                </Formik>
+                                                {
+                                                    touched.text && errors.text && <p className="creating-route__error">{errors.text}</p>
+                                                }
+                                                <br/>
+                                                <Button content='Добавить отзыв'
+                                                        labelPosition='left'
+                                                        icon='edit'
+                                                        primary
+                                                        type='submit'
+                                                        onClick = {handleSubmit}
+                                                />
+                                            </>
+                                        )}
+                                    </Formik>
+                                }
                             </div>
                         }
                         {
@@ -154,8 +161,12 @@ function RouteDetailsPage(prop) {
                             <MyComments data={date.userReview} idRoute={id} />
                         }
                         {
+                            date.routeReviews.length > 0 &&
+                            <h3>Отзывы:</h3>
+                        }
+                        {
                             date.routeReviews &&
-                            date.routeReviews.map( (data) =>
+                            date.routeReviews.map((data) =>
                                 <ListComments key={data.id} data={data} idRoute={id} />
                             )
                         }

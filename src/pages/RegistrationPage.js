@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom'
 
 
 import {registration} from '../action/user';
@@ -9,11 +10,12 @@ import {SecondHeader} from '../components';
 
 function RegistrationPage() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const validationsSchema = yup.object().shape({
 
         userName: yup.string()
         .required('Обязательное поле')
-        .matches(/^[^\s][0-9a-zA-Zа-яА-я!@#$%^&*]{5,}$/,'Логин должен содержать более 4 символов и не содержать пробелов'),
+        .matches(/^[^\s][0-9a-zA-Zа-яА-я!@#$%^&*]{4,}$/,'Логин должен содержать более 4 символов и не содержать пробелов'),
 
         email: yup.string()
         .email('Неверный email')
@@ -46,7 +48,7 @@ function RegistrationPage() {
                     }
                     validateOnBlur
                     validationSchema = {validationsSchema}
-                    onSubmit = {(values) => {dispatch(registration(values))}}
+                    onSubmit = {(values) => {dispatch(registration({values, history}))}}
                 >
                     {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
                         <>

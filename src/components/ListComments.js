@@ -10,7 +10,6 @@ function ListComments({data, idRoute}) {
 
     return(
         <>
-            <h3>Комментарии:</h3>
             <Comment.Group>
                 <Comment>
                     <Comment.Avatar as='a' src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />

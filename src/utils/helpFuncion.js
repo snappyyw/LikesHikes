@@ -17,3 +17,13 @@ export function difficultyTranslation(complexity) {
     }
     return "легкая";
 }
+
+export function difficultyTranslationSelect(complexity) {
+    if (complexity === "Medium"){
+        return "Средний";
+    }
+    else if(complexity === "Difficult"){
+        return "Сложный";
+    }
+    return "Легкий";
+}

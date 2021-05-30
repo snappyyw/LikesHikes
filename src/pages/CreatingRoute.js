@@ -2,11 +2,13 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {useSelector, useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 import {MainHeder, MainFooter} from '../components';
 import {createRoute} from '../action/creatingRoutes';
+import {difficultyTranslationSelect} from '../utils/helpFuncion';
 
-function CreatingRoute() {
+function CreatingRoute(prop) {
     const validationsSchema = yup.object().shape({
         routeName: yup.string()
         .required('Обязательное поле')
@@ -25,8 +27,10 @@ function CreatingRoute() {
         complexity: yup.string()
         .required('Выберите сложность маршрута'),
     });
+    const data = prop.location.data;
     const coordinates = useSelector(state => state.creatingRoutes.coordinates);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     return(
         <>
@@ -37,18 +41,18 @@ function CreatingRoute() {
                         initialValues = {
                             {
                                 coordinates: coordinates,
-                                routeName: '',
-                                description: '',
-                                complexity: '',
-                                region: '',
-                                keyPoints: '',
-                                duration: '',
-                                createdById: null,
+                                routeName: data ? data.name : '',
+                                description: data ? data.description : '',
+                                complexity: data ? data.complexity : '',
+                                region: data ? data.region : '',
+                                keyPoints: data ? data.keyPoints : '',
+                                duration: data ? data.duration : '',
+                                id: data ? data.id : null,
                             }
                         }
                         validateOnBlur
                         validationSchema = {validationsSchema}
-                        onSubmit = {(values) => dispatch(createRoute(values))}
+                        onSubmit = {(values) => dispatch(createRoute({values, history}))}
                     >
                         {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
                             <>
@@ -57,7 +61,7 @@ function CreatingRoute() {
                                     className = "creating-route__input" 
                                     onChange = {handleChange} 
                                     onBlur = {handlBlur} 
-                                    value = {values.name}
+                                    value = {values.routeName}
                                     name = "routeName"
                                     type = "text" 
                                     placeholder = "Медведь-Камень"
@@ -72,7 +76,7 @@ function CreatingRoute() {
                                     className = "creating-route__input" 
                                     onChange = {handleChange} 
                                     onBlur = {handlBlur} 
-                                    value = {values.name}
+                                    value = {values.description}
                                     name = "description"
                                     placeholder = "Гора Медведь-Камень пользуется большой популярностью..."
                                 >
@@ -87,10 +91,9 @@ function CreatingRoute() {
                                             className = "creating-route__input" 
                                             onChange = {handleChange} 
                                             onBlur = {handlBlur} 
-                                            value = {values.name}
+                                            value = {data ? difficultyTranslationSelect(values.complexity) : values.complexity}
                                             name = "complexity"
                                         >
-                                            <option disabled selected="selected">Выберите сложность</option> 
                                             <option>Легкий</option>
                                             <option>Средний</option>
                                             <option>Сложный</option>
@@ -105,7 +108,7 @@ function CreatingRoute() {
                                             className = "creating-route__input" 
                                             onChange = {handleChange} 
                                             onBlur = {handlBlur} 
-                                            value = {values.name}
+                                            value = {values.region}
                                             name = "region"
                                             type = "text" 
                                             placeholder = "Кострома"
@@ -123,7 +126,7 @@ function CreatingRoute() {
                                             className = "creating-route__input" 
                                             onChange = {handleChange} 
                                             onBlur = {handlBlur} 
-                                            value = {values.name}
+                                            value = {values.duration}
                                             name = "duration"
                                             type = "text" 
                                             placeholder = "25">
@@ -139,7 +142,7 @@ function CreatingRoute() {
                                             className = "creating-route__input" 
                                             onChange = {handleChange} 
                                             onBlur = {handlBlur} 
-                                            value = {values.name}
+                                            value = {values.keyPoints}
                                             name = "keyPoints"
                                             type = "text" 
                                             placeholder = "Кострома, волга...">

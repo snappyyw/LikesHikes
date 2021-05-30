@@ -8,6 +8,10 @@ export const GET_USER_ROUTES = 'GET_USER_ROUTES';
 export const DELETE_MY_ROUTE = 'DELETE_MY_ROUTE';
 export const PUBLISH_MY_ROUTE = 'PUBLISH_MY_ROUTE';
 export const COMPLETE_ROUTE = 'COMPLETE_ROUTE';
+export const CREATE_REPORT = 'CREATE_REPORT';
+export const GET_REPORT = 'GET_REPORT';
+export const SAVE_REPORT = 'SAVE_REPORT';
+export const DELETE_REPORT = 'DELETE_REPORT';
 
 export const setUser = (userName) => ({type: SET_USER, payload: userName});
 export const logout = () => ({type: LOGOUT});
@@ -19,3 +23,7 @@ export const SaveUserData = (data) => ({type: SAVE_USER_DATA, payload: data});
 export const deleteMyRoute = (id) => ({type: DELETE_MY_ROUTE, payload: id});
 export const publishMyRoute = (id) => ({type: PUBLISH_MY_ROUTE, payload: id});
 export const completeRoute = (id) => ({type: COMPLETE_ROUTE, payload: id });
+export const createReport = (data) => ({type: CREATE_REPORT, payload: data});
+export const getReport = (id) => ({type: GET_REPORT, payload: id});
+export const saveReport = (data) => ({type: SAVE_REPORT, payload: data});
+export const deleteReport = (data) => ({type: DELETE_REPORT, payload: data});

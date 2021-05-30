@@ -7,4 +7,6 @@ export {default as MainPage} from './MainPage';
 export {default as NotFoundPage} from './NotFoundPage';
 export {default as RouteDetailsPage} from './RouteDetailsPage';
 export {default as CreatingRoute} from './CreatingRoute';
+export {default as EditReportPage} from './EditReportPage';
 export {default as ReportPage} from './ReportPage';
+export {default as CreateBlog} from './CreateBlog';

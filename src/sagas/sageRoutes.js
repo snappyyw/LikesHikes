@@ -2,14 +2,78 @@ import {put, takeEvery, call} from 'redux-saga/effects';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-import {GET_ALL_ROUTES, receiveAllRoute} from "../action/allRoutes";
+import {
+    GET_ALL_ROUTES, receiveAllRoute,
+    ROUTE_FILTER
+} from "../action/allRoutes";
 import {
     GET_ROUTES, receiveRoute,
     ADD_ROUTE, ADD_COMMENT,
-    DELETE_COMMENT,
+    DELETE_COMMENT, DELETE_ROUTE,
 } from "../action/route";
 
 
+
+
+function requestRouteFilter(payload) {
+    return axios.post(`/api/Routes/GetRoutesUsingFilter`, payload);
+};
+
+function* workerRouteFilter({payload}) {
+    try{
+        const response = yield call(requestRouteFilter, payload);
+        if(!response.data.errors){
+            yield put(receiveAllRoute(response.data));
+        }
+        else{
+            swal( response.data.errors, {
+                icon: "error",
+                title: "Уупс...",
+                timer: 5000,
+            });
+        }
+    }
+    catch (err) {
+        swal( err.toString(), {
+            icon: "error",
+            title: "Уупс...",
+            timer: 5000,
+        });
+    }
+}
+
+function requestDeleteRoute(payload) {
+    return axios.delete(`/api/Routes/RemoveRoute?routeId=${payload}`,
+        {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
+};
+
+function* workerDeleteRoute({payload}) {
+    try{
+        const response = yield call(requestDeleteRoute, payload);
+        if(!response.data.errors){
+            const route = yield call(requestAllRoute);
+            yield put(receiveAllRoute(route.data));
+            swal("Маршрут удален", {
+                icon: "success",
+                timer: 3000,
+            });
+        }
+        else{
+            swal( response.data.errors, {
+                icon: "error",
+                title: "Уупс...",
+                timer: 5000,
+            });
+        }
+    }
+    catch (err) {
+        swal( err.toString(), {
+            icon: "error",
+            title: "Уупс...",
+            timer: 5000,
+        });
+    }
+}
 
 function requestDeleteComment(payload) {
     return axios.delete(`/api/Routes/RemoveRouteReview?routeReviewId=${payload}`,
@@ -22,6 +86,10 @@ function* workerDeleteComment({payload}) {
         const response = yield call(requestRoute, payload.idRoute);
         if(!response.data.errors){
             yield put(receiveRoute(response.data));
+            swal("Комментарий удален", {
+                icon: "success",
+                timer: 3000,
+            });
         }
         else{
             swal( response.data.errors, {
@@ -30,10 +98,6 @@ function* workerDeleteComment({payload}) {
                 timer: 5000,
             });
         }
-        swal("Комментарий удален", {
-            icon: "success",
-            timer: 3000,
-        });
     }
     catch (err) {
         swal( err.toString(), {
@@ -154,4 +218,6 @@ export function* watchRoute() {
     yield takeEvery (ADD_ROUTE, workerAddRoute);
     yield takeEvery (ADD_COMMENT, workerAddComment);
     yield takeEvery (DELETE_COMMENT, workerDeleteComment);
+    yield takeEvery (DELETE_ROUTE, workerDeleteRoute);
+    yield takeEvery (ROUTE_FILTER, workerRouteFilter);
 }
