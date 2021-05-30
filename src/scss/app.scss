@@ -1,10 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
 @import './normalize';
 
 @import './Pages/_allPages.scss';
 @import './components/_allComponents.scss';
-
-body {
-  font-family: 'Open Sans', sans-serif;
-}
