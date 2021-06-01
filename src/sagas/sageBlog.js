@@ -8,7 +8,7 @@ import {
 } from "../action/blog";
 
 function requestDeleteBlog(payload) {
-    return axios.delete(`api/Blog/Delete?postId=${payload}`,
+    return axios.delete(`http://likeshikes.somee.com/api/Blog/Delete?postId=${payload}`,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -41,7 +41,7 @@ function* workerDeleteBlog({payload}) {
 }
 
 function requestCreateBlog(payload) {
-    return axios.post(`api/Blog/Create`, payload,
+    return axios.post(`http://likeshikes.somee.com/api/Blog/Create`, payload,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -73,7 +73,7 @@ function* workerCreateBlog({payload}) {
 }
 
 function requestBlog(payload) {
-    return axios.get(`api/Blog/Posts?page=${payload}`);
+    return axios.get(`http://likeshikes.somee.com/api/Blog/Posts?page=${payload}`);
 };
 
 function* workerBlog({payload}) {

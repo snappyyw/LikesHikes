@@ -16,7 +16,7 @@ import {
 
 
 function requestRouteFilter(payload) {
-    return axios.post(`/api/Routes/GetRoutesUsingFilter`, payload);
+    return axios.post(`http://likeshikes.somee.com/api/Routes/GetRoutesUsingFilter`, payload);
 };
 
 function* workerRouteFilter({payload}) {
@@ -43,7 +43,7 @@ function* workerRouteFilter({payload}) {
 }
 
 function requestDeleteRoute(payload) {
-    return axios.delete(`/api/Routes/RemoveRoute?routeId=${payload}`,
+    return axios.delete(`http://likeshikes.somee.com/api/Routes/RemoveRoute?routeId=${payload}`,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -76,7 +76,7 @@ function* workerDeleteRoute({payload}) {
 }
 
 function requestDeleteComment(payload) {
-    return axios.delete(`/api/Routes/RemoveRouteReview?routeReviewId=${payload}`,
+    return axios.delete(`http://likeshikes.somee.com/api/Routes/RemoveRouteReview?routeReviewId=${payload}`,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -109,7 +109,7 @@ function* workerDeleteComment({payload}) {
 }
 
 function requestAddComment(payload) {
-    return axios.post(`/api/Routes/CreateReview`, payload,
+    return axios.post(`http://likeshikes.somee.com/api/Routes/CreateReview`, payload,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -142,7 +142,7 @@ function* workerAddComment({payload}) {
 }
 
 function requestAddRoute(payload) {
-    return axios.post(`/api/Routes/AddRouteToUser`, {RouteId: payload},
+    return axios.post(`http://likeshikes.somee.com/api/Routes/AddRouteToUser`, {RouteId: payload},
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -166,7 +166,7 @@ function* workerAddRoute({payload}) {
 }
 
 function requestAllRoute() {
-    return  axios.get('/api/Routes/GetAllRoutes',
+    return  axios.get('http://likeshikes.somee.com/api/Routes/GetAllRoutes',
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -185,7 +185,7 @@ function* workerAllRoute() {
 }
 
 function requestRoute(payload) {
-    return axios.get(`/api/Routes/GetRouteById?id=${payload}`,
+    return axios.get(`http://likeshikes.somee.com/api/Routes/GetRouteById?id=${payload}`,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
