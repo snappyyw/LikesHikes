@@ -16,7 +16,7 @@ import {removeCoordinat, CREATE_ROUTE} from "../action/creatingRoutes";
 
 
 function requestDeleteReport(payload) {
-    return axios.delete(`/api/PersonalArea/RemoveReport?routeId=${payload}`,
+    return axios.delete(`https://likeshikes.somee.com/api/PersonalArea/RemoveReport?routeId=${payload}`,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -48,7 +48,7 @@ function* workerDeleteReport({payload}) {
 }
 
 function requestReport(payload) {
-        return axios.get(`/api/PersonalArea/GetReport?routeId=${payload}`,
+        return axios.get(`https://likeshikes.somee.com/api/PersonalArea/GetReport?routeId=${payload}`,
             {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -76,7 +76,7 @@ function* workerReport({payload}) {
 }
 
 function requestCreateReport(payload) {
-    return axios.post(`/api/PersonalArea/CreateOrEditReport`, payload,
+    return axios.post(`https://likeshikes.somee.com/api/PersonalArea/CreateOrEditReport`, payload,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -108,7 +108,7 @@ function* workerCreateReport({payload}) {
 }
 
 function requestCompleteRoute(payload) {
-    return axios.put(`/api/PersonalArea/ChangeRoutePassed`, {RouteId: payload},
+    return axios.put(`https://likeshikes.somee.com/api/PersonalArea/ChangeRoutePassed`, {RouteId: payload},
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -134,7 +134,7 @@ function* workerCompleteRoute({payload}) {
 }
 
 function requestPublishMyRoute(payload) {
-    return axios.put(`/api/PersonalArea/PublishRoute`, {RouteId: payload},
+    return axios.put(`https://likeshikes.somee.com/api/PersonalArea/PublishRoute`, {RouteId: payload},
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -167,7 +167,7 @@ function* workerPublishMyRoute({payload}) {
 }
 
 function requestCreateRoutes(payload) {
-    return axios.post(`/api/PersonalArea/CreateOrEditRoute`, payload,
+    return axios.post(`https://likeshikes.somee.com/api/PersonalArea/CreateOrEditRoute`, payload,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
@@ -193,7 +193,7 @@ function* workerCreateRoutes({payload}) {
 }
 
 function requestDeleteMyRoute(payload) {
-    return axios.delete(`/api/PersonalArea/RemoveRoute?RouteId=${payload}`,
+    return axios.delete(`https://likeshikes.somee.com/api/PersonalArea/RemoveRoute?RouteId=${payload}`,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 }
 
@@ -228,7 +228,7 @@ function* workerDeleteMyRoute({payload}) {
 }
 
 function requestRegistration(payload) {
-    return axios.post(`/api/Account/registration`, payload);
+    return axios.post(`https://likeshikes.somee.com/api/Account/registration`, payload);
 }
 
 function* workerRegistration({payload}) {
@@ -259,7 +259,7 @@ function* workerRegistration({payload}) {
 }
 
 function requestUserData() {
-    return axios.get(`/api/PersonalArea/GetUserRoutes`,
+    return axios.get(`https://likeshikes.somee.com/api/PersonalArea/GetUserRoutes`,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 }
 
@@ -288,7 +288,7 @@ function* workerUserData() {
 
 function requestLogin(payload) {
 
-    return axios.post('/api/Account/login', payload);
+    return axios.post('https://likeshikes.somee.com/api/Account/login', payload);
 }
 
 function* workerLogin({payload}) {
@@ -317,7 +317,7 @@ function* workerLogin({payload}) {
 }
 
 function requestAuth() {
-    return  axios.get(`/api/Account/GetUserData`,
+    return  axios.get(`https://likeshikes.somee.com/api/Account/GetUserData`,
         {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 }
 
