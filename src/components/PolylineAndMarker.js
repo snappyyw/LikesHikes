@@ -65,6 +65,7 @@ function PolylineAndMarker({сoordinates, date}) {
                         }
                         {
                             isAdmin &&
+                            user.userName &&
                             <button className="info-window__button" onClick={() => dispatch(deleteRoute(date.id))}
                             >
                                 Удалить

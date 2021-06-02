@@ -11,8 +11,7 @@ import {difficultyTranslationSelect} from '../utils/helpFuncion';
 function CreatingRoute(prop) {
     const validationsSchema = yup.object().shape({
         routeName: yup.string()
-        .required('Обязательное поле')
-        .matches(/^[^\s][0-9a-zA-Zа-яА-я!@#$%^&*]{3,}$/,'Название должен содержать более 3 символов и не содержать пробелов'),
+        .required('Обязательное поле'),
 
         description: yup.string()
         .required('Обязательное поле'),
