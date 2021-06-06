@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {deleteComment} from "../action/route";
 
 function ListComments({data, idRoute}) {
-    const isAdmin = useSelector(state => state.user.isAdmin);
+    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
     return(
@@ -25,7 +25,8 @@ function ListComments({data, idRoute}) {
                             {data.text}
                         </Comment.Text>
                         {
-                            isAdmin &&
+                            user.isAdmin &&
+                            user.userName &&
                             <Comment.Actions>
                                 <Comment.Action onClick={() => dispatch(deleteComment(
                                     {idComment: data.id, idRoute: idRoute}

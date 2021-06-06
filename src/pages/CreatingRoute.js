@@ -42,7 +42,7 @@ function CreatingRoute(prop) {
                                 coordinates: coordinates,
                                 routeName: data ? data.name : '',
                                 description: data ? data.description : '',
-                                complexity: data ? data.complexity : '',
+                                complexity: data ? data.complexity : 'Легкий',
                                 region: data ? data.region : '',
                                 keyPoints: data ? data.keyPoints : '',
                                 duration: data ? data.duration : '',
