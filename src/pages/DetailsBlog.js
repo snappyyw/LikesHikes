@@ -13,11 +13,11 @@ import * as yup from 'yup';
 
 import {
     MainHeder, MainFooter,
-    DetailsMap, MyComments,
-    ListComments,
+    MyComments, ListComments,
 } from '../components';
-import {getRoute, addComment} from '../action/route';
+import {addComment} from '../action/route';
 import {difficultyTranslation} from '../utils/helpFuncion';
+import {getDetailsBlog} from "../action/blog";
 
 
 function DetailsBlog(prop) {
@@ -33,7 +33,7 @@ function DetailsBlog(prop) {
     });
 
     React.useEffect(() => {
-        dispatch(getRoute(id));
+        dispatch(getDetailsBlog(id));
     }, []);
 
     return(

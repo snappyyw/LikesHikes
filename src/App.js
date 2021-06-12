@@ -7,7 +7,7 @@ import { RegistrationPage, AuthorizationPage,
     ProfilePage, NotFoundPage,
     RouteDetailsPage, CreatingRoute,
     EditReportPage, ReportPage,
-    CreateBlog,
+    CreateBlog, DetailsBlog
 } from "./pages";
 import { auth } from './action/user';
 
@@ -25,7 +25,7 @@ function App() {
     return (
         <Switch>
             <Route exact path='/' component={MainPage} />
-            <Route path='/Blog' component={BlogPage} />
+            <Route exact path='/Blog' component={BlogPage} />
             <Route exact path='/Routes' component={RoutesPage} />
             {
                 user.userName &&
@@ -50,6 +50,7 @@ function App() {
                 coordinates.length > 1 &&
                 <Route path="/Profile/Routes" component={CreatingRoute} />
             }
+            <Route path="/Blog/:id" component={DetailsBlog} />
             <Route component={NotFoundPage} />
         </Switch>
     );

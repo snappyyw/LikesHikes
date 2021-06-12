@@ -5,7 +5,37 @@ import swal from 'sweetalert';
 import {
     GET_BLOG, receiveBlog,
     CREATE_BLOG, DELETE_BLOG,
+    GET_DETAILS_BLOG,
 } from "../action/blog";
+import {receiveRoute} from "../action/route";
+
+function requestRoute(payload) {
+    console.log( axios.get(`https://likeshikes.somee.com/api/Blog/Posts/${payload}`,
+        {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}));
+};
+
+function* workerDetailsBlog({payload}) {
+    try{
+        const response = yield call(requestRoute, payload);
+        if(!response.data.errors){
+            // yield put(receiveRoute(response.data));
+        }
+        else{
+            swal( response.data.errors, {
+                icon: "error",
+                title: "Уупс...",
+                timer: 5000,
+            });
+        }
+    }
+    catch (err) {
+        swal( err.toString(), {
+            icon: "error",
+            title: "Уупс...",
+            timer: 5000,
+        });
+    }
+}
 
 function requestDeleteBlog(payload) {
     return axios.delete(`https://likeshikes.somee.com/api/Blog/Delete?postId=${payload}`,
@@ -94,4 +124,5 @@ export function* watchBlog() {
     yield takeEvery (GET_BLOG, workerBlog);
     yield takeEvery (CREATE_BLOG, workerCreateBlog);
     yield takeEvery (DELETE_BLOG, workerDeleteBlog);
+    yield takeEvery (GET_DETAILS_BLOG, workerDetailsBlog);
 }

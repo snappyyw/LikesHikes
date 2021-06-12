@@ -10,3 +10,4 @@ export {default as CreatingRoute} from './CreatingRoute';
 export {default as EditReportPage} from './EditReportPage';
 export {default as ReportPage} from './ReportPage';
 export {default as CreateBlog} from './CreateBlog';
+export {default as DetailsBlog} from './DetailsBlog';
