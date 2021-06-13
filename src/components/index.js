@@ -11,4 +11,5 @@ export {default as DetailsMap} from './DetailsMap';
 export {default as ProfilePolylineAndMarker} from './ProfilePolylineAndMarker';
 export {default as MyComments} from './MyComments';
 export {default as ListComments} from './ListComments';
+export {default as ListCommentsBlog} from './ListCommentsBlog';
 

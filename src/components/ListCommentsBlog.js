@@ -2,9 +2,9 @@ import React from 'react';
 import { Comment, Icon } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {deleteComment} from "../action/route";
+import {deleteCommentBlog} from "../action/blog";
 
-function ListComments({data, idRoute}) {
+function ListCommentsBlog({data, idBlog}) {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
 
@@ -20,9 +20,9 @@ function ListComments({data, idRoute}) {
                             <div>
                                 {
                                     data.rating &&
-                                        <>
-                                            <Icon name='star' />{data.rating}
-                                        </>
+                                    <>
+                                        <Icon name='star' />{data.rating}
+                                    </>
                                 }
                             </div>
                         </Comment.Metadata>
@@ -30,12 +30,11 @@ function ListComments({data, idRoute}) {
                             {data.text}
                         </Comment.Text>
                         {
-                            user.isAdmin &&
-                            user.userName &&
+                            ((user.userName === data.authorName) || user.isAdmin ) &&
                             <Comment.Actions>
-                                <Comment.Action onClick={() =>dispatch(deleteComment(
-                                    {idComment: data.id, idRoute: idRoute}
-                                    ))}
+                                <Comment.Action onClick={() =>dispatch(deleteCommentBlog(
+                                    {idComment: data.id, idBlog: idBlog}
+                                ))}
                                 >
                                     Удалить
                                 </Comment.Action>
@@ -48,4 +47,4 @@ function ListComments({data, idRoute}) {
     )
 }
 
-export default ListComments;
+export default ListCommentsBlog;

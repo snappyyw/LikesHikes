@@ -19,6 +19,7 @@ function CreateBlog() {
         text: yup.string()
             .required('Обязательное поле'),
 
+        file: yup.string(),
     });
 
     return(
@@ -31,11 +32,12 @@ function CreateBlog() {
                             {
                                 heading: '',
                                 text: '',
+                                file: ''
                             }
                         }
                         validateOnBlur
                         validationSchema = {validationsSchema}
-                        onSubmit = {(values) => dispatch(createBlog({values, history}))}
+                        onSubmit = {(values) => console.log({values})}
                     >
                         {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
                             <>
@@ -65,7 +67,7 @@ function CreateBlog() {
                                 {
                                     touched.text && errors.text && <p className="creating-route__error">{errors.text}</p>
                                 }
-                                <input type="file" name="f"></input>
+                                <input type="file" onChange = {handleChange} name = "file"></input>
                                 <button className = "creating-route__btn" onClick = {handleSubmit} type = "submit">Создать</button>
                             </>
                         )}

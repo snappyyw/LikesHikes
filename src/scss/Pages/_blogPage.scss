@@ -7,8 +7,9 @@
     padding-bottom: 50px;
   }
   &__img{
-    height: 250px;
-    width: 90%;
+    &:hover{
+      cursor: pointer;
+    }
   }
   &__title {
     text-align: center;

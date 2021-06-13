@@ -5,6 +5,9 @@
     padding: 20px;
     min-height: 100vh;
   }
+  &__img{
+    width: 1000px;
+  }
   &__title {
     padding-top: 25px;
     font-size: 40px;
@@ -15,6 +18,7 @@
     color: darkgray;
   }
   &__text{
+    float: left;
     font-size: 20px;
   }
 }

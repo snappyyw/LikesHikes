@@ -5,20 +5,87 @@ import swal from 'sweetalert';
 import {
     GET_BLOG, receiveBlog,
     CREATE_BLOG, DELETE_BLOG,
-    GET_DETAILS_BLOG,
+    GET_DETAILS_BLOG, saveDetailsBlog,
+    ADD_COMMENT_BLOG, DELETE_COMMENT_BLOG
 } from "../action/blog";
-import {receiveRoute} from "../action/route";
 
-function requestRoute(payload) {
-    console.log( axios.get(`https://likeshikes.somee.com/api/Blog/Posts/${payload}`,
-        {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}));
+
+function requestDeleteCommentBlog(payload) {
+    return axios.delete(`https://likeshikes.somee.com/api/Blog/RemoveComment?id=${payload}`,
+        {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
+};
+
+function* workerDeleteCommentBlog({payload}) {
+    try{
+        yield call(requestDeleteCommentBlog, payload.idComment);
+        const response = yield call(requestDetailsBlog, payload.idBlog);
+        if(!response.data.errors){
+            yield put(saveDetailsBlog(response.data));
+            swal("Комментарий удален", {
+                icon: "success",
+                timer: 3000,
+            });
+        }
+        else{
+            swal( response.data.errors, {
+                icon: "error",
+                title: "Уупс...",
+                timer: 5000,
+            });
+        }
+    }
+    catch (err) {
+        swal( err.toString(), {
+            icon: "error",
+            title: "Уупс...",
+            timer: 5000,
+        });
+    }
+}
+
+function requestAddCommentBlog(payload) {
+    return axios.post(`https://likeshikes.somee.com/api/Blog/CreateComment`, payload,
+        {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
+};
+
+function* workerAddCommentBlog({payload}) {
+    try{
+        yield call(requestAddCommentBlog, payload);
+        const response = yield call(requestDetailsBlog, payload.PostId);
+        if(!response.data.errors){
+            yield put(saveDetailsBlog(response.data));
+        }
+        else{
+            swal( response.data.errors, {
+                icon: "error",
+                title: "Уупс...",
+                timer: 5000,
+            });
+        }
+        swal("Комментарий добавлен", {
+            icon: "success",
+            timer: 3000,
+        });
+    }
+    catch (err) {
+        swal( err.toString(), {
+            icon: "error",
+            title: "Уупс...",
+            timer: 5000,
+        });
+    }
+}
+
+function requestDetailsBlog(payload) {
+    return axios.get(`https://likeshikes.somee.com/api/Blog/Post?id=${payload}`,
+        {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
 };
 
 function* workerDetailsBlog({payload}) {
     try{
-        const response = yield call(requestRoute, payload);
+        const response = yield call(requestDetailsBlog, payload);
         if(!response.data.errors){
-            // yield put(receiveRoute(response.data));
+            yield put(saveDetailsBlog(response.data));
         }
         else{
             swal( response.data.errors, {
@@ -125,4 +192,6 @@ export function* watchBlog() {
     yield takeEvery (CREATE_BLOG, workerCreateBlog);
     yield takeEvery (DELETE_BLOG, workerDeleteBlog);
     yield takeEvery (GET_DETAILS_BLOG, workerDetailsBlog);
+    yield takeEvery (ADD_COMMENT_BLOG, workerAddCommentBlog);
+    yield takeEvery (DELETE_COMMENT_BLOG, workerDeleteCommentBlog);
 }
