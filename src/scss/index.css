@@ -292,6 +292,7 @@ a {
   color: darkgray;
 }
 .route-details__text {
+  line-height: 2;
   font-size: 20px;
 }
 

@@ -27,7 +27,9 @@ function BlogList() {
                         <Card.Body>
                             <Card.Title>{heading}</Card.Title>
                             <Card.Text>
-                                {text}
+                                <p className="blog__text">
+                                    {text}
+                                </p>
                             </Card.Text>
                         </Card.Body>
                         <p className = "blog__date">
