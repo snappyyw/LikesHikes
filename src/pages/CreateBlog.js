@@ -7,8 +7,6 @@ import {useHistory} from 'react-router-dom'
 import {MainHeder, MainFooter} from '../components';
 import {createBlog} from '../action/blog';
 
-
-
 function CreateBlog() {
     const dispatch = useDispatch()
     const history = useHistory();
@@ -37,7 +35,7 @@ function CreateBlog() {
                         }
                         validateOnBlur
                         validationSchema = {validationsSchema}
-                        onSubmit = {(values) => console.log({values})}
+                        onSubmit = {(values) => dispatch(createBlog({values, history}))}
                     >
                         {({values, errors, touched, handleChange, handlBlur, handleSubmit}) => (
                             <>
