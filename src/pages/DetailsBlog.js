@@ -1,10 +1,6 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import { Grid, Image } from 'semantic-ui-react'
-
-import {
-    Button,
-} from 'semantic-ui-react';
+import { Grid, Image,  Button } from 'semantic-ui-react'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
@@ -20,6 +16,9 @@ function DetailsBlog(prop) {
     const blog = useSelector(state => state.blog);
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
+    const style ={
+        textAlign: "center",
+    }
     const validationsSchema = yup.object().shape({
         text: yup.string()
             .required('Обязательное поле'),
@@ -45,15 +44,17 @@ function DetailsBlog(prop) {
                             </Grid.Row>
                             <Grid.Row>
                                 <Grid.Column width={16}>
-                                    <Image src={`http://likeshikes.somee.com/api/images/GetImage?id=${blog.appImageId}`} width="100%" height="400px" />
+                                    <div style={style}>
+                                        <img src={`http://likeshikes.somee.com/api/images/GetImage?id=${blog.appImageId}`} />
+                                    </div>
                                 </Grid.Column>
                             </Grid.Row>
                             <Grid.Row>
-                            <Grid.Column width={16}>
-                                 <span className="route-details__text">
-                                    {blog.text}
-                                </span>
-                            </Grid.Column>
+                                <Grid.Column width={16}>
+                                     <p className="route-details__text">
+                                        {blog.text}
+                                    </p>
+                                </Grid.Column>
                             </Grid.Row>
                         </Grid>
                     }

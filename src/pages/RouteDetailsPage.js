@@ -73,7 +73,7 @@ function RouteDetailsPage(prop) {
                                     <span className="route-details__headers">Описание: </span>
                                 </Grid>
                                 <Grid item xs={12} sm={9}>
-                                    <span className="route-details__text">{date.description}</span>
+                                    <p className="route-details__text">{date.description}</p>
                                 </Grid>
                                 <Grid item xs={12} sm={3}>
                                     <span className="route-details__headers">Рейтинг: </span>
