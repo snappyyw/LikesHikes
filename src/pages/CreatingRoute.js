@@ -46,7 +46,7 @@ function CreatingRoute(prop) {
                                 region: data ? data.region : '',
                                 keyPoints: data ? data.keyPoints : '',
                                 duration: data ? data.duration : '',
-                                id: data ? data.id : null,
+                                routeId: data ? data.id : null,
                             }
                         }
                         validateOnBlur
